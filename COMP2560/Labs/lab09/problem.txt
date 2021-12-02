@@ -1,0 +1,10 @@
+Lucas Sarweh
+sarwehl@uwindsor.ca
+ID: 110042658
+
+The program in step 3 does not work because the parent process has a different memory
+than the child processes it creates. So when the children set the different indicies
+of the matrix to the multiplied values, it does it only for the memory of the child
+and not the memory of the parent. To fix this you can either use a seperate file
+to the store the calculations and then retrieve it with the parent, use shared memory,
+or use a pipe.

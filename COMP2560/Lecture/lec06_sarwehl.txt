@@ -1,0 +1,19 @@
+Lucas Sarweh
+sarwehl@uwindsor.ca
+ID: 110042658
+
+1. Devices are categorized into two main groups: character devices and block devices. Explain the
+differences and the effects on the way we should read or write to them.
+
+Character devices read in single characters for input and output and are used more
+for communication. Block devices have larger blocks of data that can be read or write.
+An example of a character device is a trackpad, and an example of a block device is
+a SSD.
+
+7. When using read() or write() system calls, we need to specify a buffer. Should we select large buffer
+or small? What is the optimum size of buffer based on the underlying task?
+
+We should use a large buffer so that the input can be read properly because if we don't have
+enough space in the buffer to store what we read or write then a problem will occur. The system
+call will only return the used space in the buffer anyway. The optimum size of a buffer if we
+know how much space we need and what type we can use sizeof(datatype) * amountneeded.

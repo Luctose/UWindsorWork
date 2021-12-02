@@ -1,0 +1,25 @@
+Lucas Sarweh
+sarwehl@uwindsor.ca
+ID: 110042658
+
+Question 1:
+
+Is cc, the C compiler, a built-in command of a shell of a UNIX-based/like operating system? Justify your
+answer.
+
+When you use cc you do not use it with ./ , but it is not a built-in command.
+It is a program file where the opcode of it is stored in /usr/bin, the reason
+the shell knows where cc is is because /usr/bin is part of the $PATH environment
+variable which is the variable that stores the directories that the shell looks
+in for files that execute if what you have typed in the command prompt is not a
+built-in and not in the current directory using ./
+
+Question 2:
+
+How can we distinguish between shell’s built-ins (commands) and a program which requests the shell
+to be bootstrapped?
+
+When the shell command line recieves an input it first checks if the input is a built-in command, then
+it checks if there is ./ for a program file inside the current directory, then it looks for program files
+inside the $PATH environment variable. So, the shell will check for it's built-in commands first and if it
+is not one then it looks for program files. If there is ./ infront then it is always a program file.

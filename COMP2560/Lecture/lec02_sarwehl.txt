@@ -1,0 +1,26 @@
+Lucas Sarweh
+sarwehl@uwindsor.ca
+ID: 110042658
+
+3. UNIX did not initially recognize the mouse as an input device (still existing commercial versions have a
+problem with it.) At what level of programming and in what programming language do we need to write
+code to expand UNIX to support mouse inputs? Justify your answer.
+
+Answer:
+
+We need use system-level programming in order to support a mouse input. This is because we have to add to the
+device manager to be able to handle a mouse input. The device manager is part of the kernel and to modify the
+kernel is what a system-level programmer does. Also you would need to add to the interrupt request handler and
+the table that gives the proper handler address. So, you would need to use a lower-level language to save the
+cpu registers after it is finished with the request.
+
+4. Explain the trip that a mouse click takes to the UNIX kernel.
+
+Asnwer:
+
+First when you click the mouse button two circuits attach to each other sending an electric signal.
+The processor suddenly recieves this electric signal and gets an interrupt request.
+A lookup table mapping for all interrupt request will now be referenced based on the shock given by the mouse.
+The one for the mouse click will be used and in return the instruction pointer will receive the address
+to the location of the interrupt request handler for the mouse which is inside the kernel. Now the handler inside
+the kernel can execute the mouse click.

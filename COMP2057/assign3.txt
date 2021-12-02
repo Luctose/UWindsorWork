@@ -1,0 +1,3 @@
+I understand the FTP process, which is done using FileZilla and when you connect to
+the electron server you can transfer files over to the server from your local drive.
+(You can also use command prompt to do this I assume).

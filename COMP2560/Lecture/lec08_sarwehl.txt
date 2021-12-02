@@ -1,0 +1,14 @@
+Lucas Sarweh
+sarwehl@uwindsor.ca
+ID: 110042658
+
+3. Like dynamic allocation of memory locations, is it able to deallocate the allocated memory locations at
+runtime? Justify your answer.
+
+Yes it is able to deallocate dynamically allocated memory at runtime using free(void *ptr), which will
+free the memory pointed to by ptr. The dynamic memory should always be freed after allocated.
+
+8. There is an error called `stack overflow’. What are the causes of this error in a program/process?
+
+Stack overflow is caused when too many new function calls storing too much data have been pushed onto the stack.
+The stack section of the memory has reached the bss section and can no longer store more memory.

@@ -1,0 +1,23 @@
+Lucas Sarweh
+sarwehl@uwindsor.ca
+ID: 110042658
+
+4. Compare static vs. dynamic linking of library routines.
+
+Static linking links the extra opcodes to your programs before the program
+starts executing. This will require a little more memory to process, but it
+will run faster as it's always in memory. Dynamic linking is called for during
+a programs execution time and will need to locate the nesseccary proccess via 
+system call. The operating system will grab it for the program and because of
+this it is a little slower, but uses less memory.
+
+5. By example, compare closed programs, free programs, and open programs.
+
+Closed programs are programs that you need to pay for to use and the source
+code is not viewable and you only have access to the opcode. An example would
+be the Windows 10 operating system. Free software is software that you did not
+pay money for. An example would be League of Legends because it is a computer 
+game that you don't have to pay money for. Open source software is software
+that is not only free to use, but free to modify as you have the source
+code. So you can add your own features or improve it and sell it yourself.
+An example of this would be GIMP which is a raster graphics editor.

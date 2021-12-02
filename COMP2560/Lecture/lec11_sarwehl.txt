@@ -1,0 +1,26 @@
+Lucas Sarweh
+sarwehl@uwindsor.ca
+ID: 110042658
+
+2.a. Is it possible to transfer the variable a of type point from the child to the parent (or vice versa) in
+IPC? Justify your answer.
+
+Yes it is possible to transfer the variable a from the child to the parent when you just give the memory
+address. It is giving information between processes on the same computer and has the same memory.
+
+b. Is it possible to transfer the variable a of type point from a sender process to a receiver process
+(or vice versa) in Network IPC? Justify your answer.
+
+It is still possible but, you cannot use the memory address as it is a different computer and does not 
+have the same memory. You can serialize the entire struct a and send all the data from that over, then
+the receiver can deserialize it when it gets the bytes.
+
+5. On the one hand, it is said that binding address for the sender/client process is optional. On the other
+hand, it is said that any communication in a computer network requires the addresses on both sides
+of the communication. Are these two sentences contradictory? Explain your answer.
+
+These two sentences are not contradictory because the sender process will create a new socket with the
+help of the network manager from the kernel. Because the process and the kernel are in the same
+computer, they will have the same address. So, when you don't specify the sender address the kernel
+will do it for you. However, the receiver address must be specified because the kernel is not in that
+machine.

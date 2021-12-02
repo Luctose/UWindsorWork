@@ -1,0 +1,19 @@
+Lucas Sarweh
+sarwehl@uwindsor.ca
+ID: 110042658
+
+6. Which one is more dangerous, orphans or zombies? Why?
+
+Zombies are more dangerous than orphans because when a child becomes an orphan,
+it is adopted by the kernel as a foster father. But, when a child becomes
+a zombie, it now has to wait until the parent goes to sleep in order for the
+kernel to wake it up and give the exit code. If the parent never calls
+wait(), then the zombie will stay in memory forever and won't be adopted
+because the kernel knows there was already an existing parent.
+
+10. How can a process have a grandchild? Explain by an example.
+
+A process can have a grandchild if when the parent creates a child and
+then the child creates a child process of it's own. The child of the child
+is the grandchild of the original parent. The child will have the PID of the
+grandchild and the granchild getpid() will be 0.
