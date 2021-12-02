@@ -1,0 +1,62 @@
+Lab 8
+COMP-1410
+Lucas Sarweh
+25 Mar 2021
+
+Part 3:
+
+create_node()
+
+First allocate memory for the node being created. Make sure
+that there was enough memory and if there wasn't return NULL.
+Then, set the given int item, left ptr, and right ptr.
+Lastly, return the pointer to the newly created tree node.
+
+The running time is O(1) because the function does not
+depend on the number of nodes as it does not insert it
+anywhere it just creates a new instance of a node and sets
+its attributes based off the parameters.
+
+free_tree()
+
+Make sure the passed in root was not NULL. If it was
+return because there is no memory to free. Then, using
+recursion, call free_tree() on the left pointer and the
+right pointer which will keep going until it reaches a leaf
+because we want to free the leaf first. Once all the nodes
+before it are freed it will then free itself.
+
+The running time is O(n) because the function goes to every
+node recursively and frees each one.
+
+height()
+
+If the given root is NULL return 0 which happens when we
+have found a leaf meaning this current path can go no further.
+Then the recursion is when we return the maximum value of
+the left and right height plus one. we add one each time
+because that is what keeps track of how far we have gone into
+the tree. This will ultimately find the path with the most
+calls before a return.
+
+The running time is O(n) because it goes through every
+possible path of the tree to find the max height which
+requires it to traverse every node in the tree once.
+
+num_leaves()
+
+The first if statement will return 0 when a given pointer
+is NULL. This only occurs when a node has one child and
+tells it to not count that path. Then, it checks if
+the current node is a leaf because it has no children.
+If thats the case return 1 as we have found 1 leaf.
+Then the recursion in any other node returns the calling
+of num_leaves() when the left pointer is the root plus when
+the right pointer is the root. This will ultimately find
+the leaves on both sides of the tree.
+
+The running time is O(n) because to find the leaf nodes
+the function runs through each path to find the end of
+each of those paths. Once it finds the end it knows that
+is a leaf. To do this it must go to each node of the tree
+hence O(n).

@@ -1,0 +1,72 @@
+Lab 4
+COMP1410
+Lucas Sarweh
+
+Part 1:
+
+expand
+axpend
+adpenx
+adepnx
+adenpx
+adenpx
+
+Part 4:
+
+char_swap()
+
+This takes two pointers to characters in a string as parameters.
+First we set a temporary value to the dereferenced a pointer so
+we do not lose the value. Then, we set the dereferenced a pointer
+to the dereferenced b pointer. Finally, we set the dereferenced
+b pointer to the temporary value.
+
+This functions running time is constant, O(1), because the inputs
+only swap locations and time is not dependant on them.
+
+select_min()
+
+First we define variables to track what the current character
+with the lowest ascii is and the index of that character.
+We set a variable to the length of the passed in string.
+A for loop is used to go through every character in the string
+and when it finds an ascii value lower than the current lowest,
+it sets that as the lowest instead and saves the index.
+After it goes through the whole string it will return the
+memory address to the lowest ascii valued character.
+
+This functions running time is linear, O(n), because there is
+one for loop that loops as many times as the length of the
+inputted string. So the length of the input is 1:1 to the
+time complexity of the algorithm.
+
+str_sort()
+
+First we store the length of the passed in string. Then, we
+loop through the string passed in which will keep track of
+spot we want to transfer the next smallest character to.
+Each time we call char_swap() and in the parameters we also
+call select_min(). Together this swaps the minimum ascii
+valued character of the unsolved part of the string with
+the front current unsolved part of the string. After, repeat
+this until we reach the end of the for loop.
+
+This functions time complexity is quadratic, O(n^2), because
+we have a for loop that loops as many times as the length of
+the string inputted, but we also call two functions inside this
+for loop. First we have char_swap() which as written before is
+O(1). Then, we have select_min() which was O(n). So because
+these are called within the for loop we multiply these
+complexities. n * n * 1 = n^2. Therefore we have O(n^2).
+
+str_sort() meets the required bounds of the number of operations
+because str_sort() is O(n^2) and that is measured using the
+number of operations. The for loop in a for loop in the function
+will be a summation in a summation of operations turning out to
+be about n^2 operations which is also the requirement.
+For the required number of swaps it is only O(n) because
+char_swap is called outside of the select_min() stack which
+contains the nested for loop within that call. So it only is
+within one for loop making the number of swaps and the length
+of input 1:1, which is O(n); the requirement for the number of
+swaps.

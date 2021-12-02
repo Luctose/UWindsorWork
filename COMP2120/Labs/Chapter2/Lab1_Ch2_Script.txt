@@ -1,0 +1,21 @@
+Lab 1
+Lucas Sarweh
+COMP-2120
+Due: Sun Sept 26 2021
+
+Testing Charts:
+
+Task #4
+
+Diameter | Volume (hand calculated) | Volume (resulting output)
+    2    |           4.19           |           4.19
+   25.4  |          8580.25         |          8580.25
+  875000 |     350770273496500000   |     350770273496516610    <- Computer more accurate than my phone calculator
+
+Task #5
+
+Miles driven | Gallons used | Miles per gallon (hand calculated) | Miles per gallon (resulting output)
+    2000     |     100      |                20                  |                 20
+    500      |     25.5     |                19.61               |                 19.61
+    241.5    |     10       |                24.15               |                 24.15
+    100      |     0        |                Error               |                 Infinity

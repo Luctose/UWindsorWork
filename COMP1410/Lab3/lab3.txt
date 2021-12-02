@@ -1,0 +1,35 @@
+Lab 3 Explainations
+COMP-1410
+Lucas Sarweh
+04 Feb 2021
+
+Explainations:
+
+matrix_add(n, a[][3], b[][3], c[][3]);
+
+This function has parameters for the number of rows, the two
+matricies you will be adding together, and a third matrix to
+store the result. We use two for loops to iterate through the
+rows and the columns. Inside the for loop we set the current
+indicies of the c matrix to the sum of the current indicies of
+the a and b matricies.
+
+negate_column(n, c, a[][3]);
+
+This function has parameters for the number of rows, which
+column you want to modify, and the matrix to modify. A for
+loop is used to loop through the rows of the matrix with the
+constant column value c. Each time we will multiply the current
+element by -1 to negate it.
+
+negate_row(n, r, *a);
+
+This function has parameters for the number of rows, which row
+you want to negate, and a pointer to a matrix. First, we change
+the pointer to the start of the row we are negating. Because
+each row has 3 elements and r is the row we want to modify
+starting at 0, we can use pointer arithmetic by adding 3 times
+r to the pointer a. Now we can loop through the row we want to
+negate once and each time multiply the current element by -1.
+Each loop needs to increment the pointer to move to the next
+element of the row.

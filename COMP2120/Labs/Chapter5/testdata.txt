@@ -1,0 +1,15 @@
+Lab 4 (Chapter 5)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Oct 24 2021
+
+Test Data:
+
+Menu Item | Input | Hand-Calculated | Output
+A Circle  |   90  |  25446.900494   | 25446.900494
+A Rect    | 4, -5 |      -20.0      | -20.0
+A Triang  | 0, -21|       0.0       | -0.0
+C Circle  |   5   |   31.415927     | 31.415927
+P Rect    | 90, 23|      226.0      | 226.0
+P Triang  |5, 6, 8|       19.0      | 19.0

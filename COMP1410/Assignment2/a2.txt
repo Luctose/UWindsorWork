@@ -1,0 +1,61 @@
+Assignment 2
+COMP-1410
+Lucas Sarweh
+08 Mar 2021
+
+1d)
+
+make_move()
+
+First make_move() will check for columns that are out of range
+and return false. Then, it will loop through each row of the
+chosen column and check if there is an X or O already there
+starting at the top. If there is and it is only the first row
+then it will return false as the column is full. Otherwise,
+it will add a players character to the previous last empty
+spot and return true. If there is no return at the end it
+means there was never a spot alreay filled so it automatically
+will fill the first spot for the player and return true.
+
+check_win()
+
+First it initializes variables and arrays to check the
+horizontal, verticle, and diagnal wins. We loop through
+each row and column and when the board has the character
+of the player we are checking for we add one to the hor,
+the current ver, and the grid of diagnals. Now it checks
+if it has gotten low enough in the 2d array to check for
+diagnals and once it has it checks two times to see if
+there is a diagnal above it, one to the right and one
+to the left, and if it has it will return true. If there was
+no taken spot instead it will reset the hor number and the
+current ver. Next it checks if the hor or the current ver is
+at 4 or more and will return true for a win if so. At the
+end if there was no win return false.
+
+2c)
+
+first_capital()
+
+We define our variables for lower, mid, and upper bound.
+In a while loop we check if the current midpoint of the
+string is uppercase. If so we set the upper to the mid.
+If not we set the lower to the mid plus one. Then we
+recalculate the midpoint given the new lower and upper
+bounds. When the upper and the lower are the same we are
+done and we break the loop. We now will check if the
+final letter is uppercase. If it is we return the last
+letter. If not it means there were no uppercases and we
+return 0.
+
+This runs in O(logn) time because it cuts the amount of
+length of the string, n, in half every single loop. This
+is the opposite of exponenential time which is O(logn).
+
+deepest_substring()
+
+Loop through the string and everytime you see a "(" then add
+to the deepest and make sure highest is always highest and
+index is deepest index and when you see ")" remove from
+deepness and afterward loop through deepest part and 
+concatenate to the out.

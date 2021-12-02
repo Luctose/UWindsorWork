@@ -1,0 +1,303 @@
+Script started on 2021-10-03 18:25:06-04:00 [TERM="xterm-256color" TTY="/dev/pts/11" COLUMNS="120" LINES="30"]
+[?2004h]0;sarwehl@alpha: ~/Fall2021/lab2[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/lab2[00m$ cat PizzaOrder.java
+[?2004l/*
+Lab 2
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Oct 03 2021
+*/
+
+import java.util.Scanner;  // Needed for the Scanner class
+
+/**
+   This program allows the user to order a pizza.
+*/
+
+public class PizzaOrder
+{
+   public static void main (String[] args)
+   {
+      // Create a Scanner object to read input.
+      Scanner keyboard = new Scanner (System.in);
+
+      String firstName;             // User's first name
+      boolean discount = false;     // Flag for discount
+      int inches;                   // Size of the pizza
+      char crustType;               // For type of crust
+      String crust = "Hand-tossed"; // Name of crust
+      double cost = 12.99;          // Cost of the pizza
+      final double TAX_RATE = .08;  // Sales tax rate
+      double tax;                   // Amount of tax
+      char choice;                  // User's choice
+      String input;                 // User input
+      String toppings = "Cheese ";  // List of toppings
+      int numberOfToppings = 0;     // Number of toppings
+
+      // Prompt user and get first name.
+      System.out.println("Welcome to Mike and " +
+                         "Diane's Pizza");
+      System.out.print("Enter your first name: ");
+      firstName = keyboard.nextLine();
+
+      // Determine if user is eligible for discount by
+      // having the same first name as one of the owners.
+      // ADD LINES HERE FOR TASK #1
+      if(firstName.compareToIgnoreCase("diane") == 0 || firstName.compareToIgnoreCase("mike") == 0){
+          discount = true; // Set discount to true when they have the
+                           // same name as one of the owners
+      }
+
+      // Prompt user and get pizza size choice.
+      System.out.println("Pizza Size (inches)   Cost");
+      System.out.println("        10            $10.99");
+      System.out.println("        12            $12.99");
+      System.out.println("        14            $14.99");
+      System.out.println("        16            $16.99");
+      System.out.println("What size pizza " +
+                         "would you like?");
+      System.out.print("10, 12, 14, or 16 " +
+                       "(enter the number only): ");
+      inches = keyboard.nextInt();
+
+      // Set price and size of pizza ordered.
+      // ADD LINES HERE FOR TASK #2
+      if(inches == 10){ // 10 inch pizza costs 10.99
+        cost = 10.99;
+      }
+      else if(inches == 12){ // 12 inch pizza costs 12.99
+        cost = 12.99;
+      }
+      else if(inches == 14){ // 14 inch pizza costs 14.99
+        cost = 14.99;
+      }
+      else if(inches == 16){ // 16 inch pizza costs 16.99
+        cost = 16.99;
+      }
+      else{ // Incase user inputs something that was not an option
+        // Default to the 12 inch pizza
+        // Tell the user that this has occured
+        System.out.println("You have not chosen one of the options.\n"
+        + "Therefore a 12 inch pizza will be made.");
+        // Set the inches to 12
+        inches = 12;
+        // Set the cost to the cost for a 12 inch pizza
+        cost = 12.99;
+      }
+
+      // Consume the remaining newline character.
+      keyboard.nextLine();
+
+      // Prompt user and get crust choice.
+      System.out.println("What type of crust " +
+                         "do you want? ");
+      System.out.print("(H)Hand-tossed, " +
+                       "(T) Thin-crust, or " +
+                       "(D) Deep-dish " +
+                       "(enter H, T, or D): ");
+      input = keyboard.nextLine();
+      crustType = input.charAt(0);
+
+      // Set user's crust choice on pizza ordered.
+      // ADD LINES FOR TASK #3
+      switch(crustType){
+         // Hand tossed case labels
+         case 'H':
+         case 'h':
+            crust = "Hand-tossed"; // Set crust to Hand-tossed
+            break;
+         
+         // Thin crust case labels
+         case 'T':
+         case 't':
+            crust = "Thin-crust"; // Set crust to Thin-crust
+            break;
+
+         // Deep dish case labels
+         case 'D':
+         case 'd':
+            crust = "Deep-dish"; // Set crust to Deep-dish
+            break;
+         
+         // Default when invalid input is entered
+         default:
+            // Send message to the user that that was not one of the choices
+            System.out.println("That was not one of the choices.\n" + "Hand-tossed pizza will be made.");
+            // Do Hand-tossed by default
+            crustType = 'H';
+            crust = "Hand-tossed";
+      }
+
+      // Prompt user and get topping choices one at a time.
+      System.out.println("All pizzas come with cheese.");
+      System.out.println("Additional toppings are " +
+                         "$1.25 each, choose from:");
+      System.out.println("Pepperoni, Sausage, " +
+                         "Onion, Mushroom");
+
+      // If topping is desired,
+      // add to topping list and number of toppings
+      System.out.print("Do you want Pepperoni? (Y/N): ");
+      input = keyboard.nextLine();
+      choice = input.charAt(0);
+      if (choice == 'Y' || choice == 'y')
+      {
+         numberOfToppings += 1;
+         toppings = toppings + "Pepperoni ";
+      }
+      System.out.print("Do you want Sausage? (Y/N): ");
+      input = keyboard.nextLine();
+      choice = input.charAt(0);
+      if (choice == 'Y' || choice == 'y')
+      {
+         numberOfToppings += 1;
+         toppings = toppings + "Sausage ";
+      }
+      System.out.print("Do you want Onion? (Y/N): ");
+      input = keyboard.nextLine();
+      choice = input.charAt(0);
+      if (choice == 'Y' || choice == 'y')
+      {
+         numberOfToppings += 1;
+         toppings = toppings + "Onion ";
+      }
+      System.out.print("Do you want Mushroom? (Y/N): ");
+      input = keyboard.nextLine();
+      choice = input.charAt(0);
+      if (choice == 'Y' || choice == 'y')
+      {
+         numberOfToppings += 1;
+         toppings = toppings + "Mushroom ";
+      }
+
+      // Add additional toppings cost to cost of pizza.
+      cost = cost + (1.25 * numberOfToppings);
+
+      // Display order confirmation.
+      System.out.println();
+      System.out.println("Your order is as follows: ");
+      System.out.println(inches + " inch pizza");
+      System.out.println(crust + " crust");
+      System.out.println(toppings);
+
+      // Apply discount if user is eligible.
+      // ADD LINES FOR TASK #4 HERE
+      if(discount){
+         // Tell user they are eligible for a discount
+         System.out.println("Congratulations! You are eligible for a $2.00"
+         + " discount.\nIt will be applied automatically.");
+         // Reduce the cost by $2.00
+         cost -= 2;
+      }
+
+      // EDIT PROGRAM FOR TASK #5
+      // SO ALL MONEY OUTPUT APPEARS WITH 2 DECIMAL PLACES
+      System.out.printf("The cost of your order " +
+                        "is: $%.2f\n", cost);
+
+      // Calculate and display tax and total cost.
+      tax = cost * TAX_RATE;
+      System.out.printf("The tax is: $%.2f\n", tax);
+      System.out.printf("The total due is: $%.2f\n",
+                        (tax + cost));
+
+      System.out.println("Your order will be ready " +
+                         "for pickup in 30 minutes.");
+   }
+}[?2004h]0;sarwehl@alpha: ~/Fall2021/lab2[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/lab2[00m$ java [Kc PizzaOd[Krder.java
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/lab2[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/lab2[00m$ java PizzaOrder
+[?2004lWelcome to Mike and Diane's Pizza
+Enter your first name: Lucas
+Pizza Size (inches)   Cost
+        10            $10.99
+        12            $12.99
+        14            $14.99
+        16            $16.99
+What size pizza would you like?
+10, 12, 14, or 16 (enter the number only): 14
+What type of crust do you want? 
+(H)Hand-tossed, (T) Thin-crust, or (D) Deep-dish (enter H, T, or D): d
+All pizzas come with cheese.
+Additional toppings are $1.25 each, choose from:
+Pepperoni, Sausage, Onion, Mushroom
+Do you want Pepperoni? (Y/N): y
+Do you want Sausage? (Y/N): n
+Do you want Onion? (Y/N): n
+Do you want Mushroom? (Y/N): n
+
+Your order is as follows: 
+14 inch pizza
+Deep-dish crust
+Cheese Pepperoni 
+The cost of your order is: $16.24
+The tax is: $1.30
+The total due is: $17.54
+Your order will be ready for pickup in 30 minutes.
+[?2004h]0;sarwehl@alpha: ~/Fall2021/lab2[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/lab2[00m$ java PizzaOrder
+[?2004lWelcome to Mike and Diane's Pizza
+Enter your first name: DIANE
+Pizza Size (inches)   Cost
+        10            $10.99
+        12            $12.99
+        14            $14.99
+        16            $16.99
+What size pizza would you like?
+10, 12, 14, or 16 (enter the number only): 16  68
+You have not chosen one of the options.
+Therefore a 12 inch pizza will be made.
+What type of crust do you want? 
+(H)Hand-tossed, (T) Thin-crust, or (D) Deep-dish (enter H, T, or D): V
+That was not one of the choices.
+Hand-tossed pizza will be made.
+All pizzas come with cheese.
+Additional toppings are $1.25 each, choose from:
+Pepperoni, Sausage, Onion, Mushroom
+Do you want Pepperoni? (Y/N): N
+Do you want Sausage? (Y/N): Y
+Do you want Onion? (Y/N): Y
+Do you want Mushroom? (Y/N): N
+
+Your order is as follows: 
+12 inch pizza
+Hand-tossed crust
+Cheese Sausage Onion 
+Congratulations! You are eligible for a $2.00 discount.
+It will be applied automatically.
+The cost of your order is: $13.49
+The tax is: $1.08
+The total due is: $14.57
+Your order will be ready for pickup in 30 minutes.
+[?2004h]0;sarwehl@alpha: ~/Fall2021/lab2[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/lab2[00m$ java PizzaOrder
+[?2004lWelcome to Mike and Diane's Pizza
+Enter your first name: M m Mike
+Pizza Size (inches)   Cost
+        10            $10.99
+        12            $12.99
+        14            $14.99
+        16            $16.99
+What size pizza would you like?
+10, 12, 14, or 16 (enter the number only): 12 0
+What type of crust do you want? 
+(H)Hand-tossed, (T) Thin-crust, or (D) Deep-dish (enter H, T, or D): h t h
+All pizzas come with cheese.
+Additional toppings are $1.25 each, choose from:
+Pepperoni, Sausage, Onion, Mushroom
+Do you want Pepperoni? (Y/N): n
+Do you want Sausage? (Y/N): n
+Do you want Onion? (Y/N): n
+Do you want Mushroom? (Y/N): N
+
+Your order is as follows: 
+10 inch pizza
+Hand-tossed crust
+Cheese 
+Congratulations! You are eligible for a $2.00 discount.
+It will be applied automatically.
+The cost of your order is: $8.99
+The tax is: $0.72
+The total due is: $9.71
+Your order will be ready for pickup in 30 minutes.
+[?2004h]0;sarwehl@alpha: ~/Fall2021/lab2[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/lab2[00m$ exit
+[?2004lexit
+
+Script done on 2021-10-03 18:27:25-04:00 [COMMAND_EXIT_CODE="0"]

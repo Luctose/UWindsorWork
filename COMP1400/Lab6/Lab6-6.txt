@@ -1,0 +1,25 @@
+Lab 6 Exercise 6
+Lucas Sarweh
+2 Nov 2020
+
+Exercise 6: What will be the output of the following C programs?
+
+A)
+The output of A is:
+Hi. This is case 0
+Hi. This is case 1
+
+case 2 is not selected because the i = 2; inside the switch
+is unreachable as it is outside of a case and the
+while loop exits before i = 2.
+
+There will be 1 iteration in program A.
+
+B)
+The output of B is:
+Hi. This is case 0
+Hi. This is case 1
+
+case 2 is not selected for the same reason as A)
+
+There will be 2 iterations in program B.

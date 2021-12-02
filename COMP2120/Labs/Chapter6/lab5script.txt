@@ -1,0 +1,222 @@
+Script started on 2021-10-31 18:05:33-04:00 [TERM="xterm-256color" TTY="/dev/pts/5" COLUMNS="120" LINES="30"]
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab5[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab5[00m$ cat[K[K[Kjavac Television.java[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcat Television
+[?2004lcat: Television: No such file or directory
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab5[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab5[00m$ cat Television.java
+[?2004l/*
+Lab 5 (Chapter 6)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Oct 31 2021
+*/
+
+/**
+ * The purpose of this class is to model a television
+ * Lucas Sarweh 10/31/2021
+ */
+public class Television {
+    // Fields
+    private final String MANUFACTURER; // Manufacturer of the TV
+    private final int SCREEN_SIZE; // The size of the TV
+    private boolean powerOn; // True or false representing the on or off state
+    private int channel; // The current channel
+    private int volume; // The volume of the TV, 0 being low and 100 being high
+
+    // Methods
+
+    /**
+     * Constructor initializes the fields
+     * @param brand The manufacturer of the TV
+     * @param size The size of the TV
+     */
+    public Television(String brand, int size){
+        // Set the constant tv attributes
+        MANUFACTURER = brand;
+        SCREEN_SIZE = size;
+
+        // Initialize variables
+        powerOn = false;
+        channel = 2;
+        volume = 20;
+    }
+
+    /**
+     * Sets the tv's channel
+     * @param ch Channel to be changed to
+     */
+    public void setChannel(int ch){
+        // Set the channel
+        channel = ch;
+    }
+
+    /**
+     * Switches the power from off to on or vice-versa
+     */
+    public void power(){
+        // Set the power to the opposite
+        powerOn = !powerOn;
+    }
+
+    /**
+     * Increment volume by one
+     */
+    public void increaseVolume(){
+        // Increase volume
+        volume++;
+    }
+
+    /**
+     * Decrement volume by one
+     */
+    public void decreaseVolume(){
+        // Decrease volume
+        volume--;
+    }
+
+    /**
+     * Gives the current channel
+     * @return Current channel
+     */
+    public int getChannel(){
+        // Return the channel
+        return channel;
+    }
+
+    /**
+     * Gives the current volume
+     * @return Current volume
+     */
+    public int getVolume(){
+        // Return the volume
+        return volume;
+    }
+
+    /**
+     * Gives the manufacturer of the tv
+     * @return The manufacturer
+     */
+    public String getManufacturer(){
+        // Return the manufacturer
+        return MANUFACTURER;
+    }
+
+    /**
+     * Gives the tv's screen size
+     * @return The screen size
+     */
+    public int getScreenSize(){
+        // Return the screen size
+        return SCREEN_SIZE;
+    }
+}
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab5[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab5[00m$ javac Television.java
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab5[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab5[00m$ cat TelevisionDemo.java
+[?2004l/*
+Lab 5 (Chapter 6)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Oct 31 2021
+*/
+
+import java.util.Scanner;  // Needed for the Scanner class
+
+/**
+   This class demonstrates the Television class.
+*/
+
+public class TelevisionDemo
+{
+   public static void main(String[] args)
+   {
+      // Create a Scanner object to read from the keyboard
+      Scanner keyboard = new Scanner (System.in);
+
+      // Declare variables
+      int station;         // The user's channel choice
+
+      // Declare and instantiate a television object
+      Television bigScreen = new Television("Toshiba", 55);
+
+      // Turn the power on
+      bigScreen.power();
+
+      // Display the state of the television
+      System.out.println("A " +
+                         bigScreen.getScreenSize() +
+                         " inch " +
+                         bigScreen.getManufacturer() +
+                         " has been turned on.");
+
+      // Prompt the user for input and store into station
+      System.out.print("What channel do you want? ");
+      station = keyboard.nextInt();
+
+      // Change the channel on the television
+      bigScreen.setChannel(station);
+
+      // Increase the volume of the television
+      bigScreen.increaseVolume();
+
+      // Display the the current channel and
+      // volume of the television
+      System.out.println("Channel: " +
+                         bigScreen.getChannel() +
+                         " Volume: " +
+                         bigScreen.getVolume());
+      System.out.println("Too loud! Lowering the volume.");
+
+      // Decrease the volume of the television
+      bigScreen.decreaseVolume();
+      bigScreen.decreaseVolume();
+      bigScreen.decreaseVolume();
+      bigScreen.decreaseVolume();
+      bigScreen.decreaseVolume();
+      bigScreen.decreaseVolume();
+
+      // Display the the current channel and
+      // volume of the television
+      System.out.println("Channel: " +
+                         bigScreen.getChannel() +
+                         " Volume: " +
+                         bigScreen.getVolume());
+
+      System.out.println();   // For a blank line
+
+      // HERE IS WHERE YOU DO TASK #5
+      // New television object
+      Television portable = new Television("Sharp", 19);
+
+      // Turn on the TV
+      portable.power();
+      // Declare the TV that was turned on
+      System.out.printf("A %d inch %s TV was turned on.\n", portable.getScreenSize(), portable.getManufacturer());
+
+      // Prompt user for channel
+      System.out.print("What channel do you want? ");
+      station = keyboard.nextInt();
+      // Change the channel to the users preference
+      portable.setChannel(station);
+
+      // Decrease the volume by 2
+      portable.decreaseVolume();
+      portable.decreaseVolume();
+
+      // Print state of TV
+      System.out.printf("Channel: %d Volume: %d\n", portable.getChannel(), portable.getVolume());
+   }
+}[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab5[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab5[00m$ javac TelevisionDemo.java
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab5[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab5[00m$ java TelevisionDemo
+[?2004lA 55 inch Toshiba has been turned on.
+What channel do you want? 56
+Channel: 56 Volume: 21
+Too loud! Lowering the volume.
+Channel: 56 Volume: 15
+
+A 19 inch Sharp TV was turned on.
+What channel do you want? 7
+Channel: 7 Volume: 18
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab5[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab5[00m$ exit
+[?2004lexit
+
+Script done on 2021-10-31 18:07:17-04:00 [COMMAND_EXIT_CODE="0"]

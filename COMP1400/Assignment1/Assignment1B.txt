@@ -1,0 +1,17 @@
+1. Start
+2. Show a Welcome message to the user
+3. Loop { for asking the user to input their option}
+	a) Show a prompt for user selection
+	b) if user selects B
+		- prompt user for the num1
+		- prompt user for the operation
+		- prompt user for the num2
+		- Output the result of num1 and num2 using the specified operation
+	c) if user selects E
+		- Exit the loop
+	d) if user selects any other letter
+		- Give a message saying we cannot yet compute this
+		- Go back to the beggining of the loop
+4. End of loop
+5. Show a Goodbye message
+6. End

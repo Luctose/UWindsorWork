@@ -1,0 +1,178 @@
+Assignment 3
+COMP-1410
+Lucas Sarweh
+24 Mar 2021
+
+1d.
+
+create_list()
+
+This function dynamically allocates memory for a new
+list using malloc(). It sets the front element to
+NULL then returns the pointer to the created list.
+
+The running time is O(1) because it just creates an empty
+list and returns its pointer.
+
+insert_student()
+
+This function will first check if the list is empty
+or the new student you want to insert will have
+the lowest id number. If so it will allocate
+memory for that new node and check if there was
+enough memory to create it. Then it will set
+the given id to the newly created node and allocate
+memory for the name and make sure there was enough
+memory and if there was copy the given name into
+the name element. After, it will set the next
+pointer of the newly created node to the front
+of the list and set the new front to point to the
+new node and return true. If it the new node needs
+to be inserted in the middle or end, it will first
+define a tracker of the current list element.
+It will then loop through the whole list and in 
+each loop will check if either we are at the end of
+the list or we are between the id's that are
+lower and higher of the id given. If that is the
+case we will insert the new node into this spot.
+It will allocate new memory for the node and the
+name and then set the id and name. Then, it will
+make the node behind it next pointer point to the
+new node and the new node next will point to the
+one after. It will then return true. If we find
+a duplicate node it returns false instantly.
+After each loop the current node is set to the
+next one.
+
+The running time is O(k + 1) where k is the position you
+are inserting the new node at. This is because the
+function does not go through the whole list it stops
+when it has found the position to place the new node.
+The worst case would be O(n) if the id given for the
+new student is the highest id in the list.
+
+remove_student()
+
+This will first check if the student to remove is the
+first in the list. If so it will use a temporary
+variable to avoid leaking memory and it will make
+the first in the list the next student and then
+free the memory associated with the previous first
+student and return true for success. If the student
+to remove is not the first in the list it will loop
+through the list until the next student is the id we
+need. That way we have the student before the one to
+free still available. Then, we make a temp variable
+to avoid leaking memory and set the next node of the
+current node to the one after the student we are freeing.
+Then, we free the memory associated with the student using
+the temporary variable. Then return true for success. If
+no student was found return false for fail.
+
+The running time is O(k + 1) where k is the position you
+are removing the given node at. This is because the
+function does not go through the whole list it stops
+when it has found the position to delete the given node.
+The worst case would be O(n) if the id given for the
+student to delete is the highest id in the list.
+
+find_student()
+
+First it defines a node pointer that is initialized to
+the first element of the passed in list. Then it loops
+through the linked list and when we have found the
+matching id, it will return the name associated with
+that student. If no student is found return NULL.
+
+The running time is O(k + 1) where k is the position you
+are removing the given node at. This is because the
+function does not go through the whole list it stops
+when it has found the position of the given node id.
+The worst case would be O(n) if the id given for the
+student to find is the highest id in the list.
+
+free_list()
+
+First it defines a node pointer that is initialized to
+the first element of the passed in list. Then it loops
+through the list and each time it sets the current node
+the a call of free_node(curnode). In free_node() it will
+free the memory associated with the passed in node and
+return a pointer to the next node in the list without
+leaking any memory. After the whole list is looped through
+all of the nodes are freed and then it will free the list
+wrapper itself.
+
+The running time is O(n) because it will go through every
+node in the list and free the memory associated with it.
+
+merge_lists()
+
+First it defines 3 nodes for the current elements of: the
+first list, the second list, and the newly merged list.
+Then it makes sure the lists are not empty and finds what
+the front of the new list will be. If one of the lists are
+empty it will ignore the empty one and if both are empty
+it will just free the structure wrappers and return.
+It finds the front by comparing the two lists front element
+and whichever is lower will be the front of the new one.
+After, it will loop through the two passed in lists and find
+the next lowest id and add it to the new list. It will check
+if only one list has been exhausted aswell and will only take
+from the one with elements. Once they both have been exhausted,
+it will then free the wrappers of the first and second list.
+After this call the passed in out list will have the front
+of the merged and sorted list.
+
+The running time is O(n) because you go through each given
+list simultaneously and add each element in order to the new
+list out. So you would go through list one O(n) and list
+two O(n) at the same time making it O(n) + O(n) which
+equals O(2n) which is linear time and can be simplified
+to just O(n).
+
+check_order()
+
+This function will first define a current node initialized
+to the front of the given list. If it is NULL is will
+return true as an empty list is in order. Then it will
+loop through the list and will compare the nodes next to
+each other and make sure they are in order. If one is out
+of order it will return false and if none are found it will
+return true.
+
+The running time is O(n) because the function goes through
+every element in the list and makes sure the elements are in
+order by comparing each adjacent node id. The worst case
+is O(n) when the list is sorted because it must check every
+node to make sure it is sorted. The function is faster when
+it is not sorted because as soon as it finds something out
+of order it returns false.
+
+2d.
+
+insert_node()
+
+First check if the tree node is NULL and if it is insert the root
+node with the given word and value. If the word is not empty
+check the alphebetical order of the current tree node, if
+the word to insert is less than the current word then 
+insert at the next left tree instead, if the current word is
+more than insert next right. After return the tree root.
+
+lookup_word()
+
+First, if the current tree is empty, return 0 because there is
+no words to lookup. Then, if the given word and the current
+word are the same return that words value. If the given word
+is smaller than the current word then recursively lookup the
+word in the left side. If the given word is larger than the
+current word then recursively lookup the word in the right side.
+
+free_tree()
+
+If the tree given is NULL instantly return as there is nothing
+to free. Then if there is something to free recursively call
+free_tree() using the right and left pointers of the current
+nodes which will reach every node in the tree. Then, free the
+current tree we are on and return.

@@ -1,0 +1,18 @@
+Lab 1
+Lucas Sarweh
+Date: 19 Jan 2021
+
+Iterative Approach
+Initialize a variable to count the sum.
+Check for negative inputs and inputs with more than 8 digits.
+Iterate until n is 0 and for each iteration add the last digit of
+the number to sum and then remove the last digit of the number.
+Return the sum after the iteration is finished.
+
+Recursive Approach
+Check for negative inputs and inputs with more than 8 digits.
+Check for the base case - if there is only one digit left then
+return that digit.
+Else use the recursive step which returns the function call
+of its own function with the current number without the last
+digit as a paremeter. Then, add the last digit aswell.

@@ -1,0 +1,284 @@
+Script started on 2021-11-12 20:13:13-05:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="120" LINES="30"]
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab7[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab7[00m$ ls
+[?2004lAddress.java  CreditCardDemo.java  CreditCard.java  lab7script.txt  MoneyDemo.java  Money.java  Person.java
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab7[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab7[00m$ cat Money.java
+[?2004l/*
+Lab 7 (Chapter 8)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Nov 14 2021
+*/
+
+/**
+   This class represents nonnegative amounts of money.
+*/
+
+public class Money
+{
+   // The number of dollars
+   private long dollars;
+
+   // The number of cents
+   private long cents;
+
+   /**
+      Constructor
+      @param amount The amount in decimal format.
+   */
+
+   public Money(double amount)
+   {
+      if (amount < 0)
+      {
+         System.out.println("Error: Negative amounts " +
+                            "of money are not allowed.");
+         System.exit(0);
+      }
+      else
+      {
+         long allCents = Math.round(amount * 100);
+         dollars = allCents / 100;
+         cents = allCents % 100;
+      }
+   }
+
+   // ADD LINES FOR TASK #1 HERE
+   // Document and write a copy constructor
+
+   /**
+    * Copy Constructor
+    * @param obj The Money object to be copied
+    */
+   public Money(Money obj){
+       // Copy the Money obj fields
+       dollars = obj.dollars;
+       cents = obj.cents;
+   }
+
+   /**
+      The add method
+      @param otherAmount The amount of money to add.
+      @return The sum of the calling Money object
+              and the parameter Money object.
+   */
+
+   public Money add(Money otherAmount)
+   {
+      Money sum = new Money(0);
+
+      sum.cents = this.cents + otherAmount.cents;
+
+      long carryDollars = sum.cents / 100;
+
+      sum.cents = sum.cents % 100;
+
+      sum.dollars = this.dollars +
+                    otherAmount.dollars +
+                    carryDollars;
+
+      return sum;
+   }
+
+   /**
+      The subtract method
+      @param amount The amount of money to subtract.
+      @return The difference between the calling Money
+              object and the parameter Money object.
+   */
+
+   public Money subtract (Money amount)
+   {
+      Money difference = new Money(0);
+
+      if (this.cents < amount.cents)
+      {
+         this.dollars = this.dollars - 1;
+         this.cents = this.cents + 100;
+      }
+
+      difference.dollars = this.dollars - amount.dollars;
+      difference.cents = this.cents - amount.cents;
+
+      return difference;
+   }
+
+   /**
+      The compareTo method
+      @param amount The amount of money to compare against.
+      @return -1 if the dollars and the cents of the
+              calling object are less than the dollars and
+              the cents of the parameter object.
+              0 if the dollars and the cents of the calling
+              object are equal to the dollars and cents of
+              the parameter object.
+              1 if the dollars and the cents of the calling
+              object are more than the dollars and the
+              cents of the parameter object.
+   */
+
+   public int compareTo(Money amount)
+   {
+      int value;
+
+      if(this.dollars < amount.dollars)
+         value = -1;
+      else if (this.dollars > amount.dollars)
+         value = 1;
+      else if (this.cents < amount.cents)
+         value = -1;
+      else if (this.cents > amount.cents)
+         value = 1;
+      else
+         value = 0;
+
+      return value;
+   }
+
+   // ADD LINES FOR TASK #2 HERE
+   // Document and write an equals method
+   // Document and write a toString method
+
+   /**
+    * Compares two Money objects
+    * @param obj The object to be compared
+    * @return True for equals, false for not equals
+    */
+   public boolean equals(Money obj){
+      // Compare the instance fields
+      if(dollars == obj.dollars && cents == obj.cents){
+         // Return true they are equal
+         return true;
+      }
+      // Return false they are not equal
+      return false;
+   }
+
+   /**
+    * Sends the information of the Money object to a String
+    * @return The String sent to the caller
+    */
+   public String toString(){
+      // Return a String
+      return "$" + dollars + "." + (cents / 10 == 0 ? "0" + cents : cents);
+   }
+}[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab7[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab7[00m$ cat CreditCard.java
+[?2004l/*
+Lab 7 (Chapter 8)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Nov 14 2021
+*/
+
+/**
+ * Stores credit card information and the methods to 
+ * charge and pay credit cards
+ */
+public class CreditCard {
+    // Fields
+    // The balance of the cardholder
+    private Money balance;
+    // The credit limit of the cardholder
+    private Money creditLimit;
+    // The cardholder
+    private Person owner;
+
+    // Methods
+
+    /**
+     * Constructor initializes fields
+     * @param newCardHolder New cardholder
+     * @param limit Limit the card starts with
+     */
+    public CreditCard(Person newCardHolder, Money limit){
+        // Initialize the fields
+        owner = newCardHolder;
+        creditLimit = new Money(limit);
+        balance = new Money(0);
+    }
+
+    /**
+     * Gets the balance of the card
+     * @return The card balance with a seperate address
+     */
+    public Money getBalance(){
+        return new Money(balance);
+    }
+
+    /**
+     * Gets the card limit
+     * @return The card limit with a seperate address
+     */
+    public Money getCreditLimit(){
+        return new Money(creditLimit);
+    }
+
+    /**
+     * Gets the cardholder details as a string
+     * @return String of owner information
+     */
+    public String getPersonals(){
+        return owner.toString();
+    }
+
+    /**
+     * Charges the amount to the card given enough credit
+     * @param amount Amount to be charged to the card
+     */
+    public void charge(Money amount){
+        // Charge amount to balance only if their is enough credit
+        if(creditLimit.compareTo(balance.add(amount)) >= 0){
+            // Charge amount
+            balance = new Money(balance.add(amount));
+            System.out.println("Charge: " + amount.toString());
+        }else{
+            System.out.println("Exceeds credit limit");
+        }
+    }
+
+    /**
+     * Pays money back to the credit card account
+     * @param amount Amount to pay down
+     */
+    public void payment(Money amount){
+        // Pay the amount to the card
+        System.out.println("Payment: " + amount.toString());
+        balance = new Money(balance.subtract(amount));
+    }
+}
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab7[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab7[00m$ javac MoneyDemo.java
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab7[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab7[00m$ java MoneyDemo
+[?2004lThe current amount is $500.00
+Adding $10.02 gives $510.02
+Subtracting $10.88 gives $499.14
+$10.02 equals $10.02
+$10.88 does not equal $10.02
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab7[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab7[00m$ javac CreditCardDemo.java
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab7[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab7[00m$ java Crd[KeditCardDemo
+[?2004lDiane Christie, 237J Harvey Hall, Menomonie, WI 54751
+Balance: $0.00
+Credit Limit: $1000.00
+
+Attempting to charge $200.00
+Charge: $200.00
+Balance: $200.00
+
+Attempting to charge $10.02
+Charge: $10.02
+Balance: $210.02
+
+Attempting to pay $25.00
+Payment: $25.00
+Balance: $185.02
+
+Attempting to charge $990.00
+Exceeds credit limit
+Balance: $185.02
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab7[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab7[00m$ ls
+[?2004lAddress.class  CreditCard.class      CreditCardDemo.java  lab7script.txt  MoneyDemo.class  Money.java    Person.java
+Address.java   CreditCardDemo.class  CreditCard.java      Money.class     MoneyDemo.java   Person.class
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab7[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab7[00m$ exit
+[?2004lexit
+
+Script done on 2021-11-12 20:14:34-05:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,248 @@
+Script started on 2021-11-04 15:13:55-04:00 [TERM="xterm-256color" TTY="/dev/pts/5" COLUMNS="120" LINES="30"]
+[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ ls
+[?2004lAverageDriver.java  Average.java  Classics.txt  CompactDisc.java  lab6script.txt  Song.java
+[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ cat Average.java
+[?2004l/*
+Lab 6 (Chapter 7)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Nov 7 2021
+*/
+
+// Scanner
+import java.util.Scanner;
+
+public class Average
+{
+    // Fields
+    private int[] data;
+    private double mean;
+
+    // Methods
+
+    /**
+     * Constructor asks user for scores and stores them, 
+     * as well as sorting the data and calculating the mean
+     */
+    public Average(){
+        // Init data
+        data = new int[5];
+
+        // Keyboard input
+        Scanner keyboard = new Scanner(System.in);
+
+        // Get the user scores
+        for(int i = 0; i < data.length; i++){
+            // Prompt user for input
+            System.out.printf("Enter score %d: ", i + 1);
+            data[i] = keyboard.nextInt();
+        }
+        // Sort and calculate the mean
+        selectionSort();
+        calculateMean();
+    }
+
+    /**
+     * Calculates the mean of the data field and stores it in mean
+     */
+    public void calculateMean(){
+        // Keep track of sum total
+        int sum = 0;
+
+        // Loop through each score
+        for(int i = 0; i < data.length; i++){
+            sum += data[i];
+        }
+        // Store the mean
+        mean = (double)sum / (double)data.length;
+    }
+
+    /**
+     * Converts the data of the object to a String, 
+     * Requires data to be sorted
+     */
+    public String toString(){
+        // String to store the data and return
+        String str = "Data: " + Integer.toString(data[0]);
+        // Loop through the data
+        for(int i = 1; i < data.length; i++){
+            // Concatenate each int to the string
+            str = str.concat(", " + Integer.toString(data[i]));
+        }
+        // Concatenate the mean
+        str = str.concat("\nMean: " + Double.toString(mean));
+
+        // Return the completed String
+        return str;
+    }
+
+    /**
+     * This sorts the integer array data using selection 
+     * sort. The array is sorted in descending order
+     */
+    public void selectionSort(){
+        // Store max variable of each pass
+        int max;
+        int maxIndex;
+        // Selection Sort
+        for(int i = 0; i < data.length; i++){
+            // Reset current pass index and max value
+            max = Integer.MIN_VALUE;
+            maxIndex = i;
+            // See which is biggest of unsorted data
+            for(int j = i; j < data.length; j++){
+                if(max < data[j]){
+                    max = data[j];
+                    maxIndex = j;
+                }
+            }
+            // Swap the largest value with the current index being sorted
+            data[maxIndex] = data[i];
+            data[i] = max;
+        }
+    }
+}[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ cat AverageDriver.java
+[?2004l/*
+Lab 6 (Chapter 7)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Nov 7 2021
+*/
+
+/**
+ * Testing the Average class
+ */
+public class AverageDriver {
+    public static void main(String[] args){
+        // Instantiate an Average object
+        Average test = new Average();
+        // Print the info (toString is done implicitly)
+        System.out.println(test);
+    }
+}
+[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ javac AverageDriver.java
+[?2004l[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ java AverageDriver
+[?2004lEnter score 1: 6
+Enter score 2: 4
+Enter score 3: 7
+Enter score 4: 9
+Enter score 5: 4
+Data: 9, 7, 6, 4, 4
+Mean: 6.0
+[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ ls
+[?2004lAverage.class        AverageDriver.java  Classics.txt      lab6script.txt
+AverageDriver.class  Average.java        CompactDisc.java  Song.java
+[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ cat C[KClassics.txt
+[?2004lOde to Joy
+Bach
+The Sleeping Beauty
+Tchaikovsky
+Lullaby
+Brahms
+Canon
+Bach
+Symphony No. 5
+Beethoven
+The Blue Danube Waltz
+Strauss[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ cat Song.java
+[?2004l/*
+   This class stores data about a song.
+*/
+
+public class Song
+{
+   private String title;   // The song's title
+   private String artist;  // The song's artist
+
+   /**
+      Constructor
+      @param title A reference to a String object
+                   containing the song's title.
+      @param artist A reference to a String object
+                    containing the song's artist.
+   */
+
+   public Song(String title, String artist)
+   {
+      this.title = title;
+      this.artist = artist;
+   }
+
+   /**
+      The toString method
+      @return A String object containing the name
+              of the song and the artist.
+   */
+
+   public String toString()
+   {
+      return title + " by " + artist + "\n";
+   }
+}[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ C[Kcat CompactDisc.a[Kjava
+[?2004l/*
+Lab 6 (Chapter 7)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Nov 7 2021
+*/
+
+import java.io.*;
+
+/**
+   This program creates a list of songs for a CD
+   by reading from a file.
+*/
+
+public class CompactDisc
+{
+   public static void main(String[] args)throws IOException
+   {
+      FileReader file = new FileReader("Classics.txt");
+      BufferedReader input = new BufferedReader(file);
+      String title;
+      String artist;
+
+      // ADD LINES FOR TASK #3 HERE
+      // Declare an array of Song objects, called cd,
+      // with a size of 6
+      Song[] cd = new Song[6];
+
+      for (int i = 0; i < cd.length; i++)
+      {
+         title = input.readLine();
+         artist = input.readLine();
+
+         // ADD LINES FOR TASK #3 HERE
+         // Fill the array by creating a new song with
+         // the title and artist and storing it in the
+         // appropriate position in the array
+         cd[i] = new Song(title, artist);
+      }
+
+      System.out.println("Contents of Classics:");
+      for (int i = 0; i < cd.length; i++)
+      {
+         // ADD LINES FOR TASK #3 HERE
+         // Print the contents of the array to the console
+         System.out.print(cd[i]);
+      }
+   }
+}[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ javac CompactDisc.java
+[?2004l[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ java CompactDisc.[K
+[?2004lContents of Classics:
+Ode to Joy by Bach
+The Sleeping Beauty by Tchaikovsky
+Lullaby by Brahms
+Canon by Bach
+Symphony No. 5 by Beethoven
+The Blue Danube Waltz by Strauss
+[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ cat Thank you
+[?2004lcat: Thank: No such file or directory
+cat: you: No such file or directory
+[?2004h]0;sarwehl@bravo: ~/Fall2021/COMP2120/lab6[01;32msarwehl@bravo[00m:[01;34m~/Fall2021/COMP2120/lab6[00m$ cat [K[K[K[Kexit
+[?2004lexit
+
+Script done on 2021-11-04 15:16:13-04:00 [COMMAND_EXIT_CODE="1"]

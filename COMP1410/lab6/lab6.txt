@@ -1,0 +1,47 @@
+Lab 6
+COMP-1410
+Lucas Sarweh
+12 Mar 2021
+
+Part 3:
+
+create_student()
+
+First reserve memory space to the pointer to the structure
+itself. If the pointer returned is NULL that means that the
+request failed and there is not enough memory so exit the
+program. If successful allocate memory for the pointer to
+the students name based on the passed in name length + 1 for
+null terminator. We also check for instances of not enough
+memory like above. If we have memory assign the given id
+to that student and also extract the given name using a for
+loop and put it into where the name pointer points to.
+Then return the adrress of the new struct instance.
+
+This function runs in O(n) because there is one for loop
+dependant on the length of the name n running in O(n),
+and there are two malloc() calls. malloc() is O(1) so the
+create_student() function is 1 * 1 * n = O(n).
+
+free_student()
+
+Use free() to free the memory of the allocated space for the
+name pointer and the struct pointer.
+
+This function runs in O(1) because it only contains two
+free() calls which are both O(1) and 1 * 1 = O(1).
+
+change_name()
+
+First set the desired memory allocation based on the length of
+the new name to a temporary pointer so we do not erase the
+previous name if there is not enough memory. we check if
+temp is NULL meaning there is not enough memory and if so
+the function returns false. If there is enough memory then
+set the allocated pointer in temp to the pointer to name.
+Then set the new name to what the name pointer is pointing to
+using a for loop. Then return true for success.
+
+This function runs in O(n) because there is a malloc() call
+and a for loop that runs for the length of the name n which
+is O(n). So, 1 * n = O(n).

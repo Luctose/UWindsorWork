@@ -1,0 +1,68 @@
+Lab 7
+Lucas Sarweh
+COMP-1410
+
+Part 3:
+
+create_node()
+
+First this function allocates memory for a new node
+to be stored. If the pointer from malloc() is NULL
+there was not enough memory and it returns NULL.
+Otherwise the string specified for the new node is
+copied into its string element and the next pointer
+specified is set into it's next element (Probably
+will be the head pointer). After it will return
+a pointer to the new_node.
+
+free_node()
+
+First it stores the next element of the given node
+into a different node just created to avoid
+leaking memory. Then it will free the node given.
+Finally, it returns the previously mentioned next
+node, if it is NULL the list is empty.
+
+concat_nodes()
+
+First it sets a new current node pointer to the
+given head pointer. Then while the current node
+is not a NULL pointer, concatenate the current
+string element of the current node into the given
+pointer to store the whole string. This
+concatenation will access the info at the current
+pointer and change the storage string one character
+at a time and will go to the next character by
+incrementing the pointer each time. In between
+nodes it will add a space if the next node is not
+NULL. It switches nodes by setting the current node
+to the next node. At the very end add a null
+terminator to make it a string.
+
+Running times
+
+concat_nodes() - This runs in O(n) where n is the
+length of the linked list headed by the head
+parameter. This is because the while loop will
+loop through each node and once it reaches NULL
+it terminates so the while loop will run n times.
+Inside the while loop is a for loop, however
+this for loop does not affect the running time
+because altough it runs in linear time this time
+is not dependant on n, it is dependant on the
+length of each string element of each node.
+Therefore the running time of concat_nodes()
+is just O(n) because we are only concerened with
+the length of the linked list.
+
+create_node() - This running time is O(1)
+because it only inserts at the new nodes at the
+behid the specified next location. Altough strcpy()
+is linear time, it is dependant on the length of
+the string you're copying not the length of the
+linked list, so it is not considered in this.
+
+free_node() - This running time O(1) because
+the node that is to be freed is given and there
+are no loops dependant on the length of the linked
+list. free() is also O(1) and so it is O(1).

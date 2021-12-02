@@ -1,0 +1,50 @@
+Lab 2
+Lucas Sarweh
+28 Jan 2021
+
+Part 1
+
+fib(5)
+main
+Just before first line 5
+
+fib(2)
+fib(3)
+fib(4)
+fib(5)
+main
+Just before first line 7
+
+fib(0)
+fib(2)
+fib(3)
+fib(4)
+fib(5)
+main
+During the first time fib(0) is called
+
+Part 4
+
+Note: I use "" around single character variables to not confuse
+them for actual english words.
+
+order(a, b) explaination:
+Order returns a bool value and accepts two pointers
+that point to a and b.
+First we define temp which is used to store temporary data
+in which the original container is modified.
+We check to see if the "a" value pointed to by the pointer is
+greater than the value from the "b" pointer because we want "a" to
+be smaller.
+If true we will store "a" to temp and then change "a" to "b"
+and "b" to temp.
+return true when there is a swap.
+return false when there is no swap.
+
+swap_pointers(a, b) explaination:
+swap_pointers has no return and passes in an address for a
+pointer.
+First it defines a temp variable that stores temporary pointers.
+Using the adressess of the variables that store the pointers
+to the original values, temp is set to "a", "a" is set to "b",
+and "b" is set to temp.

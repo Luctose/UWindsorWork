@@ -1,0 +1,365 @@
+Script started on 2021-11-19 17:57:01-05:00 [TERM="xterm-256color" TTY="/dev/pts/5" COLUMNS="120" LINES="30"]
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter9[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter9[00m$ cat Time.java
+[?2004l/*
+Lab 8 (Chapter 9)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Nov 21 2021
+*/
+
+/**
+   Represents time in hours and minutes using
+   the customary conventions.
+*/
+
+public class Time
+{
+   private int hours;         // Conventional hours
+   private int minutes;       // Conventional minutes
+   private boolean afternoon; // Flag for afternoon
+
+   /**
+      Constructs a cutomary time (12 hours, am or pm)
+      from a military time ##:##
+      @param militaryTime Time in the military
+             format ##:##
+   */
+
+   public Time(String militaryTime)
+   {
+      // Check to make sure something was entered
+      if (militaryTime == null)
+      {
+         System.out.println(militaryTime +
+                            " is not a " +
+                            "valid miliary time." );
+      }
+      // Check to make sure there are 5 characters
+      else if (militaryTime.length() != 5)
+      {
+         System.out.println(militaryTime +
+                            " is not a " +
+                            "valid miliary time." );
+      }
+      else
+      {
+         // Check to make sure the colon is in
+         // the correct spot
+         if (militaryTime.charAt(2) != ':')
+         {
+            System.out.println(militaryTime +
+                               " is not a " +
+                               "valid miliary time." );
+         }
+         // Check to make sure all other characters
+         // are digits
+         else if (!Character.isDigit(militaryTime.charAt(0)))
+         {
+            System.out.println(militaryTime +
+                               " is not a " +
+                               "valid miliary time." );
+         }
+         else if (!Character.isDigit(militaryTime.charAt(1)))
+         {
+            System.out.println(militaryTime +
+                               " is not a " +
+                               "valid miliary time." );
+         }
+         else if (!Character.isDigit(militaryTime.charAt(3)))
+         {
+            System.out.println(militaryTime +
+                               " is not a " +
+                               "valid miliary time." );
+         }
+         else if (!Character.isDigit(militaryTime.charAt(4)))
+         {
+            System.out.println(militaryTime +
+                               " is not a " +
+                               "valid miliary time." );
+         }
+         else
+         {
+            // SEPARATE THE STRING INTO THE HOURS
+            // AND THE MINUTES, CONVERTING THEM TO
+            // INTEGERS AND STORING INTO THE
+            // INSTANCE VARIABLES
+            String[] tokens = militaryTime.split(":");
+            hours = Integer.parseInt(tokens[0]);
+            minutes = Integer.parseInt(tokens[1]);
+
+            // Validate hours and minutes are valid values
+            if(hours > 23)
+            {
+               System.out.println(militaryTime +
+                                  " is not a " +
+                                  "valid miliary time." );
+            }
+            else if(minutes > 59)
+            {
+               System.out.println(militaryTime +
+                                  " is not a " +
+                                  "valid miliary time." );
+            }
+            // Convert military time to conventional time
+            // for afternoon times
+            else if (hours > 12)
+            {
+               hours = hours - 12;
+               afternoon = true;
+               System.out.println(this.toString());
+            }
+            // Account for midnight
+            else if (hours == 0)
+            {
+               hours = 12;
+               System.out.println(this.toString());
+            }
+            // Account for noon
+            else if (hours == 12)
+            {
+               afternoon = true;
+               System.out.println(this.toString());
+            }
+            // Morning times do not need converting
+            else
+            {
+               System.out.println(this.toString());
+            }
+         }
+      }
+   }
+
+   /**
+      The toString method returns a conventional time.
+      @return A conventional time with am or pm.
+   */
+   public String toString()
+   {
+      String am_pm;
+      String zero = "";
+
+      if (afternoon)
+         am_pm = "PM";
+      else
+         am_pm = "AM";
+      if (minutes < 10)
+         zero = "0";
+
+      return hours + ":" + zero + minutes + " " + am_pm;
+   }
+}[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter9[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter9[00m$ cat TimeDemo.java
+[?2004l/*
+Lab 8 (Chapter 9)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Nov 21 2021
+*/
+
+import java.util.Scanner;
+
+/**
+   This program demonstrates the Time class.
+*/
+
+public class TimeDemo
+{
+   public static void main(String[] args)
+   {
+      Scanner keyboard = new Scanner(System.in);
+      char answer = 'Y';
+      String enteredTime;
+      String response;
+
+      while (Character.toUpperCase(answer) == 'Y')
+      {
+         System.out.print("Enter a military time " +
+                          "using the ##:## format: ");
+         enteredTime = keyboard.nextLine();
+         Time now = new Time (enteredTime);
+         System.out.println("Do you want to enter " +
+                            "another (Y/N)? ");
+         response = keyboard.nextLine();
+         answer = response.charAt(0);
+      }
+   }
+}[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter9[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter9[00m$ cat CrackSecret.java
+[?2004l/*
+Lab 8 (Chapter 9)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Nov 21 2021
+*/
+
+// Imports
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+/**
+ * This class is a driver to crack the secret code from secret.txt
+ */
+public class CrackSecret {
+    public static void main(String[] args) throws FileNotFoundException, IOException{
+        // Create connection to file
+        BufferedReader file = new BufferedReader(new FileReader("secret.txt"));
+        // String array will hold the contents of the file
+        String[] line = new String[20];
+        // String builder will build the secret message
+        StringBuilder secret = new StringBuilder();
+
+        // Split the words into seperate tokens
+        line = file.readLine().split(" ");
+        // Close the file
+        file.close();
+
+        // Append every 5th words 1st character to the secret word starting at the first
+        secret.append(Character.toUpperCase(line[0].charAt(0)));
+        for(int i = 1; i < line.length; i++){
+            if(i % 5 == 0){
+                secret.append(Character.toUpperCase(line[i].charAt(0)));
+            }
+        }
+        // Print secret message
+        System.out.println(secret);
+    }
+}
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter9[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter9[00m$ javac T[KTimeDemo.java
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter9[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter9[00m$ java TimeDmem[K[K[Kemo
+[?2004lEnter a military time using the ##:## format: 00:00] 
+12:00 AM
+Do you want to enter another (Y/N)? 
+t y
+Enter a military time using the ##:## format: 10:12
+10:12 AM
+Do you want to enter another (Y/N)? 
+y
+Enter a military time using the ##:## format: 21:59
+9:59 PM
+Do you want to enter another (Y/N)? 
+y
+Enter a military time using the ##:## format: 122:12
+122:12 is not a valid miliary time.
+Do you want to enter another (Y/N)? 
+y
+Enter a military time using the ##:## format: 12:60
+12:60 is not a valid miliary time.
+Do you want to enter another (Y/N)? 
+y
+Enter a military time using the ##:## format: 2:111
+2:111 is not a valid miliary time.
+Do you want to enter another (Y/N)? 
+n
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter9[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter9[00m$ javac CrackSc[Kecret.java
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter9[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter9[00m$ java CrackSecret
+[?2004lJAVA
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter9[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter9[00m$ cd ..
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8[00m$ cd Chapter10
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter10[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter10[00m$ ls
+[?2004lAccountDriver.class  BankAccount.class  CheckingAccount.class  [0m[01;35mLab8Recording.webm[0m    SavingsAccount.java
+AccountDriver.java   BankAccount.java   CheckingAccount.java   SavingsAccount.class
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter10[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter10[00m$ cat Cehcki[K[K[K[K[KheckingAccount.java
+[?2004l/*
+Lab 8 (Chapter 10)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Nov 21 2021
+*/
+
+/**
+ * This class runs intances of checking accounts
+ */
+public class CheckingAccount extends BankAccount{
+    // Fields
+    private final double FEE = 0.15;
+
+    // Methods
+
+    /**
+     * Constructor initializes an account with the checking account number extension
+     * @param name The name of the account holder
+     * @param amount The starting balance of the account
+     */
+    public CheckingAccount(String name, double amount){
+        super(name, amount);
+        super.setAccountNumber(super.getAccountNumber() + "-10");
+    }
+
+    /**
+     * Withdraws from the account with the checking withdrawal fee
+     * @return If the account had sufficient funds
+     */
+    public boolean withdraw(double amount){
+        return super.withdraw(amount + FEE);
+    }
+}
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter10[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter10[00m$ cat SavingsAccount.java
+[?2004l/*
+Lab 8 (Chapter 10)
+Lucas Sarweh
+ID: 110042658
+COMP-2120
+Due: Sun Nov 21 2021
+*/
+
+public class SavingsAccount extends BankAccount{
+    // Fields
+    private double rate = 0.025;
+    private int savingsNumber = 0;
+    private String accountNumber;
+
+    // Methods
+
+    public SavingsAccount(String name, int amount){
+        super(name, amount);
+        accountNumber = super.getAccountNumber() + "-" + savingsNumber;
+    }
+
+    public SavingsAccount(SavingsAccount original, int amount){
+        super(original, amount);
+        savingsNumber++;
+        accountNumber = super.getAccountNumber() + "-" + savingsNumber;
+    }
+
+    public void postInterest(){
+        super.deposit(super.getBalance() * (rate / 12));
+    }
+
+    public String getAccountNumber(){
+        return accountNumber;
+    }
+}
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter10[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter10[00m$ javac CheckingAccount.java
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter10[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter10[00m$ java CheckingAccount
+[?2004lError: Main method not found in class CheckingAccount, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter10[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter10[00m$ echo oops
+[?2004loops
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter10[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter10[00m$ java Checking [KAccount[Kt[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kjavac Driver[K[K[K[K[K[KAccountDriver.java
+[?2004l[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter10[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter10[00m$ java AccountDriver
+[?2004lAccount Number 100001-10 belonging to Benjamin Franklin
+Initial balance = $1000.00
+After deposit of $500.00,  balance = $1500.00
+After withdrawal of $1000.00, balance = $499.85
+
+Account Number 100002-0 belonging to William Shakespeare
+Initial balance = $400.00
+After deposit of $500.00, balance = $900.00
+Insuffient funds to withdraw $1000.00, balance = $900.00
+After monthly interest has been posted,balance = $901.88
+
+Account Number 100002-1 belonging to William Shakespeare
+Initial balance = $5.00
+After deposit of $500.00, balance = $505.00
+Insuffient funds to withdraw $1000.00, balance = $505.00
+
+Account Number 100003-10 belonging to Issac Newton
+[?2004h]0;sarwehl@alpha: ~/Fall2021/COMP2120/lab8/Chapter10[01;32msarwehl@alpha[00m:[01;34m~/Fall2021/COMP2120/lab8/Chapter10[00m$ exit
+[?2004lexit
+
+Script done on 2021-11-19 18:01:12-05:00 [COMMAND_EXIT_CODE="0"]

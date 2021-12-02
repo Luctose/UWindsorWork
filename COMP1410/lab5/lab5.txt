@@ -1,0 +1,60 @@
+Lab 5
+Lucas Sarweh
+COMP-1410
+05 Mar 2021
+
+Part 3: Explainations
+
+find_id()
+
+First we have a for loop to loop through each struct instance.
+During each loop we check if the id we are looking for is the
+same as the current structs id. If so we copy the name
+associated with that id to the found_name storage array.
+Then because the id's should not repeat we immediatly return
+true after finding a match. If there is no id match we then
+exhaust the loop and then return false outside of it.
+
+This was required to run in O(n) and this is reached
+because the for loop executions is depending on n, the
+length of the passed in struct array. The struct arrays length
+depends on the number of students in the array. So, it runs
+in linear time based on how many students there are to check.
+(This is the worst case because it terminates if a match is
+found).
+
+
+find_name()
+
+First initialize two variables. One to count the number of
+students with the same name and another to keep track of
+the index of the storage array. We use a for loop to loop
+through each struct instance and each time compare the name
+of the current struct with the given parameter name. If they
+are equal we add to the student_count, add the id associated
+with the name to the storage ids array and add one to the index
+variable. Once the loop is over we will return the student_count
+variable giving us how many people have that name along with
+each of their student numbers in the storage array.
+
+This was required to have O(n) time which it does because the
+one for loop in it loops as many times as n, the length of
+the struct array. This is also how many people are in the
+array making it depend on the number of students linearly.
+
+In this function the best and the worst cases are almost the same 
+time because it must also count the repeated given names as it
+returns the number of students that were found. This means it
+cannot return control early and has to keep looping until
+the for loop is over making its best case also O(n). However,
+using strcmp() compares the strings every loop and in the code
+of strcmp() it will perform faster the shorter the strings are
+and if the first characters of the string are not equal
+immediatly. So the best case is when the strings are single
+characters or when the string you're looking for does not
+share a first character with any other.
+
+change_name()
+This function uses strcpy() to copy the passed in new_name
+that we want to the place where the name of the struct passed 
+in points to.

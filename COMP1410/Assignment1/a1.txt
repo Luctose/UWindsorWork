@@ -1,0 +1,73 @@
+Assignment 1 Implementation Descriptions
+Lucas Sarweh
+Date: 19 Jan 2021
+
+Questions:
+
+1c. Implementation of choose(n, m)
+
+First I check if the function parameters are invalid.
+If m is greater than n or if m is negative (And also implicitly
+if n is negative) then return 0.
+
+Then check the base case of the current parameters.
+If you choose 0 (m) from a list (n) or if you choose the same number
+as there are items in the list then it will be 1.
+
+The recursive part will return modified values of the current
+m and n values inside another call of choose(). This is defined
+in the question as (n, m) = (n - 1, m) + (n - 1, m - 1), which in
+the function translates to return choose(n - 1, m) + choose(n - 1, m - 1).
+
+2d.
+Implementation of num_divisors_up_to_k(n, k)
+
+First, I check for invalid inputs, when k < 1 or when k > n
+returns 0. k < 1 covers all unwanted negative numbers and
+dividing by 0 which is illegal. k > n is also needed for when
+the denominator is bigger than the numerator which will never
+have a remainder of 0.
+
+Then, I check the base case which is when you divide by 1, if so
+return 1. All valid inputs will have atleast one divisor.
+
+Next is recursion when you find a divisor of n. If the k value
+divides evenly with n then call the function in itself and
+subtract one from the k value and add one to the return.
+
+Finally, if the k value does not divide evenly return the
+function call of itself with one less the k value, this time
+without adding one to the return.
+
+Implementation of is_prime(n)
+
+First check for invalid inputs and return false. Those invalid
+inputs are if you are finding primes of 0 or negative numbers
+because 0 could cause division by 0 and is not a prime anyway
+and negative numbers can not be primes by definition.
+
+Next using the num_divisors_up_to_k(n, k) function check if
+there are 2 divisors when putting n in both the n and k
+parameters and if so, return true. This is to check if the number
+only has two distinct divisors, 1 and itself, the definition of
+a prime number. Otherwise return false.
+
+3d. Implementation of collatz(n)
+
+First, check invalid inputs which is when n is negative or zero.
+If so return 0 right away and print to stdout that it is invalid. 
+
+Next, if n is the base case (1) then print the current n (1) to 
+the screen to finish the sequence using printf and return 0
+(I return 0 here because it counts the very first number n called
+instead and makes it so that when collatz(1) is called it has 
+zero steps).
+
+Now I check the recursive case when n is odd. When it is odd
+I print this current number to stdout and then return a call
+of itself and modifying n -> 3n + 1. Then, I also add 1 to the
+return value.
+
+Finally, when n is even i print the current number to stdout
+and return a call of itself modifying n -> n / 2. Then, I also
+add 1 to the return value.

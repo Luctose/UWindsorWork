@@ -1,0 +1,6 @@
+Start
+Output "Hello!"
+Output "My name is: ** Lucas **"
+Output "Field of Study: " Computer Science ""
+Output "Thanks :)"
+End

@@ -1,0 +1,30 @@
+Lab 1
+Lucas Sarweh
+COMP-2120
+Due: Sun Sept 26 2021
+
+Pseudocode Algorithm
+
+Display “How many hours did you work?”.
+Input hours.
+Display “How much are you paid per hour?”.
+Input rate.
+If the value in hours is less than or equal to 40
+Then set pay to the hours times the rate.
+Otherwise set the pay to 40 times the rate plus the hours exceeding 40 times 1.5 times the rate.
+Display the value in the pay variable.
+
+Testing Cases Chart
+Pay.java
+
+Hours | Rate | Pay (hand calculated) | Pay (program result)
+  40  | 14.25|         570           |        570
+  17  | 16.81|        285.77         |       285.77
+  52  | 21.85|       1267.30         |      1267.30
+
+SalesTax.java
+
+  Item | Price | Tax | Total (calculated) | Total (output)
+ Knife | 170.89| 9.40|      180.29        |    29212.79
+ Iphone| 799.99|44.00|      843.99        |   640028.00
+ Water |  0.00 | 0.00|       0.00         |      0.00

@@ -1,0 +1,31 @@
+Lab 7 Part A
+Tracing Exercise
+Lucas Sarweh
+09 Nov 2020
+
+a)
+1*3*9*27*81*
+
+b)
+11---12---13---14---15
+16---17---18---19---20
+
+c)
+4-6
+5-5
+
+d)
+1234567891011121314151617181920
+
+e)
+4
+3
+2
+1
+0
+-1
+-2
+This will continue until -infinity
+
+f)
+Sum of 1 to 5 is 15
