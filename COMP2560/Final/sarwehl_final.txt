@@ -1,0 +1,143 @@
+Lucas Sarweh
+sarwehl@uwindsor.ca
+ID: 110042658
+
+1. Explain the following terms in two or three sentences.
+
+Current_offset
+
+When you open a file with a certain file descriptor. There is an Current_offset that
+keeps track of the file pointer the file will be read.
+
+SEEK_SET()
+
+This is a macro that represents an integer. When put as a parameter to fseek(), it brings
+the file pointer to the beggining.
+
+Fragmentation
+
+This is when you go to send information on a network but fragment (as the name suggests)
+the information sent into smaller peices.
+
+Argv
+
+This is the String list that takes in arguments from the command line to the main function.
+This is declared in the main function parameters.
+
+fork()
+
+This is a function that creates a new child from a parent program so they can run similtaneously.
+It returns the pid of the child to the parent and the pid of 0 to the child.
+
+Zombie Process
+
+This is a child process that is waiting to give its exit code to the parent, but it's parent is gone
+and forever in memory. The Kernel cannot adopt a zombie because it has one.
+
+Pipe()
+
+A function that creates a stream between a parent and child. It returns a list of one write fd and
+one read fd. The child or parent closes the one fd it doesn't need.
+
+Passive Process
+
+A process that isn't as important and gets less CPU share.
+
+Byte Order
+
+An order of bytes in which could be either big-endian or little-endian. Big-endian stores the
+most significant byte at the littlest address and vice-versa for the other.
+
+Daemon
+
+A process run in the background of a system. The user never sees it.
+
+2. Answer the following questions in two or three sentences.
+
+Q. Shell or Kernel: connects the standard file descriptors 0, 1, 2 to regular files or devices for a program
+
+A. The kernel is the one who connects the fd 0, 1, 2 to regular files/devices. 0, 1, 2 are always the same files
+
+Q. What is the main advantage of Directories?
+
+A. Directories are advantageous because the organize files into a heirarchy that make it easier to find files.
+This makes it so each file has a path based on what folders its in.
+
+Q. Large or Small datablocks for a partition that would have movies
+
+A. This is a large datablock for movies because movies store a lot of info.
+
+Q. What is the problem with this shell command: $./main 2>&1 > log.txt
+
+A. The order is wrong and the 2>&1 and log need to be switched.
+
+Q. What is the benefit of multiprocessing when there is only one processor?
+
+A. You are able to run processes in unison. The processes share the time of the CPU.
+
+Q. What is the difference between IRQs and Signals?
+
+A. IRQ are Intterupt service request that take interrupts from input devices and handle them accordingly.
+Signals are signals that a parent recieves from it's child or the OS recieves from main that tell how
+a process exited.
+
+Q. Is it possible for a producer to write to a pipe with no cosumer?
+
+A. Yes it is possible for something to be written to the pipe, but there can be no consumer without a producer.
+
+Q. Who is the producer and who is the consumer in below code?
+
+A. The child is the producer and the consumer is the parent.
+
+Q. TCP or UDP: short text messages (sms)
+
+A. I think TCP is good for sms because you can send a message and the sms will say delivered or not meaning there
+is communication back.
+
+Q. Why does the accept() return a new socket for each accepted connection?
+
+A. Because each accept() gets sockets from different programs or addresses so the socket for different
+IP's and Ports will be different.
+
+3. Find the problem with the below programs
+
+a. 
+The parent never waits for the child and the children become orphans.
+
+b. 
+Main will recursively call itself forever and won't terminate.
+
+4. Find the problem with the below program and propose a solution to fix it. 
+
+It is possible for the parent to execute first before the child and the parent will see that
+./main does not exist. You could have the parent pause() or wait() for the child before doing it's code.
+
+5. It has been said that the machine that hosts The Server process must be powerful (huge memory, many
+processors, etc.) However, the machine that hosts the client can be simple (e.g., a cell phone). Why?
+
+This is because the client only has to worry about itself. It sends a message to the server and then maybe
+the server sends something back to it. However the server will have to handle many different clients at once.
+Some cases it will handle thousands of client and each client that connect will need it's own child on the server,
+so the server must be powerful.
+
+6. [Online C Compiler] The latest standard for C language is ISO/IEC 9899:2018, widely known as C17 and
+released June 2018. Karan wanted to build his program using the latest standard, but he needed to 1)
+download a compiler that is C17-compliant, 2) install it on his computer, 3) build his program. He did all
+these steps, each of which had many challenges. Suddenly, he got the idea of exposing his installed C17-
+compliant compiler to all programmers for free, alleviating the three steps. Programmers send their
+program code to his compiler. He builds their programs and return their program files to them. What
+would be his design? (Hints: lab08 + lab11)
+
+Karan would need to setup a server code on his computer that could be for example TCP. He would need to get
+the IP and Port of his computer which is the server. Then he needs to bind his IP. Then he needs to listen for
+clients connecting to his computer and accept them. Each client will get it's own child and then the child will
+compile the code for them then send the compiled code back to the client. In order for client to connect
+he needs them to have the client code he creates which knows the server address and sends a message to him. The
+message would be the code to be compiled.
+
+7. A library routine can be delivered for both static linking (*.a) or dynamic linking (*.so) In the latter
+case, we call it a shared library. How can we tell cc to link the library statically to a program?
+
+First we can have imported libraries as import <name.h> in the file. Then we can assemble the code using
+cc name.c -S. Then we can compile it into opcode by cc name.s -c. Then we can link the opcode to the final
+executable using cc name.o -o name.
