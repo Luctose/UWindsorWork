@@ -1,0 +1,10 @@
+/* Set table width and color*/
+table {
+    width: 1920px;
+    background-color: green;
+}
+
+/* Set body margin */
+body {
+    margin: 0;
+}

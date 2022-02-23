@@ -1,0 +1,8 @@
+<YYINITIAL>if {return new tok(sym.IF,”IF”);}
+<YYINITIAL>[a-z]+ {return new tok(sym.ID, yytext());}
+<YYINITIAL>”/*” {yybegin(COMMENT);}
+<COMMENT>”*/” {yybegin(YYINITIAL);}
+<COMMENT>. {}
+
+QUOTEDSTRING = "[^\"]*"
+<YYINITIAL> {QUOTEDSTRING} { System.out.println("QUOTEDSTRING recognized: " + yytext()); ++stringCount;}
