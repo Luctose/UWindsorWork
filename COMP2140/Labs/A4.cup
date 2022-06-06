@@ -1,0 +1,154 @@
+import java.io.*;
+
+terminal OP_PM, OP_MD, LPAREN, RPAREN, SEMI, COMMA, 
+         EQEVAL, ASSIGN, 
+         MAIN, BEGIN, END, RETURN,
+         IF, ELSE, WRITE, READ,
+         TRUE, FALSE;
+
+terminal String INT, REAL, NUMBER, STRING, QUOTED, ID;
+
+non terminal String Header, Program, Method, BaseExpression, 
+                    Block, Type, Statement, ConcatStmt,
+                    AssignStmt, ReturnStmt, IfStmt,
+                    ReadStmt, WriteStmt,
+                    TypedParameter, TypedParameters,
+                    BaseParameters, LocalVariable,
+                    BasicExpr, MulDivExpr, BooleanExpr;
+
+precedence left OP_PM;
+precedence left OP_MD;
+
+Header ::= Program:e {: RESULT= "import java.io.*;"
+                              + " "
+                              + "public class A4 {"
+                              + " " 
+                              + "static BufferedWriter $bw;"
+                              + " "
+                              + "static BufferedReader $br;"
+                              + " "
+                              + "static double $tmp_real;"
+                              + " "
+                              + e 
+                              + "}";:};
+
+Program ::=  Program:e Method:e1 {: RESULT=e + e1;:}  
+          |  Method:e {: RESULT=e;:} ;
+
+Type ::= INT {: RESULT= "int";:} 
+       | REAL {: RESULT= "double";:}  
+       | STRING {: RESULT= "String";:};
+
+Method ::= Type MAIN ID LPAREN RPAREN Block:e {: RESULT= "public static void main(String[] args) throws IOException{"
+                                                       + e
+                                                       + "}";:}
+         | Type MAIN ID LPAREN RPAREN {: RESULT= "public static void main(String[] args) throws IOException{}";:} 
+         | Type:e ID:e1 LPAREN RPAREN Block:e2 {: RESULT= "static " 
+                                                        + e 
+                                                        + " " 
+                                                        + e1 
+                                                        + "() throws IOException " 
+                                                        + e2;:} 
+         | Type:e ID:e1 LPAREN TypedParameters:e2 RPAREN Block:e3 {: RESULT= "static " 
+                                                                           + e 
+                                                                           + " " 
+                                                                           + e1 
+                                                                           + "(" 
+                                                                           + e2 
+                                                                           + ")" 
+                                                                           + " throws IOException " 
+                                                                           + e3;:} ;
+
+TypedParameters ::= TypedParameter:e COMMA TypedParameter:e1 {: RESULT= e + "," + e1;:} 
+                  | TypedParameter:e {: RESULT= e;:};
+
+TypedParameter ::= Type:e ID:e1 {: RESULT= e + " " + e1;:};
+
+Block ::= BEGIN ConcatStmt:e END {: RESULT= "{" 
+                                          + e 
+                                          + "}";:}
+        | BEGIN END {: RESULT= "{}";:};
+
+ConcatStmt ::= Statement:e {: RESULT= e;:} 
+             | Statement:e ConcatStmt:e1{: RESULT= e + e1;:};
+
+Statement ::= Block:e {: RESULT= e;:} 
+            | LocalVariable:e {: RESULT= e;:} 
+            | AssignStmt:e {: RESULT= e;:} 
+            | ReturnStmt:e {: RESULT= e;:} 
+            | IfStmt:e {: RESULT= e;:} 
+            | WriteStmt:e{: RESULT= e;:} 
+            | ReadStmt:e{: RESULT= e;:};
+
+LocalVariable ::= Type:e ID:e1 SEMI {: RESULT= e 
+                                             + " "  
+                                             + e1 
+                                             + ";";:} 
+                | Type:e AssignStmt:e1 {: RESULT= e 
+                                                + " " 
+                                                + e1; :};
+
+AssignStmt ::= ID:e ASSIGN BaseExpression:e1 SEMI {: RESULT= e 
+                                                           + "=" 
+                                                           + e1 
+                                                           + ";";:} 
+             | ID:e ASSIGN QUOTED:e1 SEMI {: RESULT= e 
+                                                   + "=" 
+                                                   + e1 
+                                                   + ";";:}
+             | ID:e ASSIGN ID:e1 LPAREN RPAREN SEMI{: RESULT = e
+                                                             + "= Integer.valueOf("
+                                                             + e1
+                                                             + "());";:};
+
+ReturnStmt  ::= RETURN BaseExpression:e SEMI {: RESULT= "return " 
+                                                      + e 
+                                                      + ";";:};
+
+IfStmt ::= IF LPAREN BooleanExpr:e RPAREN Block:e1{: RESULT= "if(" 
+                                                           + e 
+                                                           + ")" 
+                                                           + e1;:} 
+         | IF LPAREN BooleanExpr:e RPAREN Block:e1 ELSE Block:e2 {: RESULT= "if(" 
+                                                                          + e 
+                                                                          + ")" 
+                                                                          + e1 
+                                                                          + "else"
+                                                                          + e2;:}
+         | IF LPAREN BooleanExpr:e RPAREN AssignStmt: e1{: RESULT= "if(" 
+                                                                 + e 
+                                                                 + ")"
+                                                                 + e1;:};
+
+WriteStmt ::= WRITE LPAREN BaseExpression:e COMMA QUOTED:e1 RPAREN SEMI {: RESULT= "$tmp_real = Double.valueOf(" 
+                                                                                 + e 
+                                                                                 + ");" 
+                                                                                 + "$bw = new BufferedWriter(new FileWriter("
+                                                                                 + e1 
+                                                                                 + "));"  
+                                                                                 + "$bw.write(\"\"+ $tmp_real);"
+                                                                                 + "$bw.close();";:};
+
+ReadStmt ::= READ LPAREN ID:e COMMA QUOTED:e1 RPAREN SEMI {: RESULT= "$br = new BufferedReader(new FileReader(" 
+                                                                   + e1 
+                                                                   + "));" 
+                                                                   + e 
+                                                                   + " = new Integer($br.readLine()).intValue();";:};
+
+BaseExpression ::= MulDivExpr:e  OP_PM:e1 BaseExpression:e2 {: RESULT= e + e1 + e2;:} 
+                 | MulDivExpr:e {: RESULT= e;:};
+
+MulDivExpr ::= BasicExpr:e OP_MD:e1 MulDivExpr:e2 {: RESULT= e + e1 + e2;:}  
+             | BasicExpr:e {: RESULT= e;:};
+
+BasicExpr ::= NUMBER:e {: RESULT= e;:} 
+            | ID:e {: RESULT= e;:} 
+            | LPAREN BaseExpression:e RPAREN {: RESULT= "(" + e + ")";:} 
+            | ID:e LPAREN BaseParameters:e1 RPAREN {: RESULT= e + "(" + e1 + ")";:};
+
+BooleanExpr ::= BaseExpression:e EQEVAL:e1 BaseExpression:e2 {: RESULT= e + e1 + e2;:}
+              | TRUE {: RESULT= "true";:}
+              | FALSE {: RESULT= "false";:}; 
+
+BaseParameters ::= BaseExpression:e COMMA BaseExpression:e1 {: RESULT= e + "," + e1;:} 
+                 | BaseExpression:e {: RESULT= e;:};

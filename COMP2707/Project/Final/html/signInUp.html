@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sign in</title>
+        <link rel="stylesheet" type="text/css" href="..\css\signInUp.css">
+    </head>
+    <body>
+        <div>
+            <br><br><br>
+            <nav>
+                <ul id="navbar" class="sticky">
+                    <li id="logo"><h3>寿司欲しい<br><i>Sushi hoshi</i></h3></li>
+                    <li><a id="navitem" href="home.html">Home</a></li>
+                    <li><a id="navitem" href="order.html">Order</a></li>
+                    <li><a id="navitem" href="reservations.html">Reservations</a></li>
+                    <li><a id="navitem" href="signInUp.html">Sign up/in</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="frame">
+            <ul id="upin">
+                <li>
+                    <h3 id="subtit">Sign up</h3>
+                    <form method="GET" action="..\php\signup.php">
+                        <input type="text" value="firstname" required name="firstname">
+                        <input type="text" value="lastname" required name="lastname">
+                        <input type="text" value="email" required name="email">
+                        <input type="text" value="password" required name="password">
+                        <input type="submit">
+                    </form>
+                </li>
+                <li>
+                    <h3 id="subtit">Sign in</h3>
+                    <form method="post" action="..\php\signin.php">
+                        <input type="text" value="email">
+                        <input type="text" value="password">
+                        <input type="submit">
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <footer>
+                <p>
+                    © 2022 - This website is not for an actual restaurant and is a project for the Winter 2022 semester
+                    for the university of Windsor.
+                </p>
+        </footer>
+    </body>
+</html>

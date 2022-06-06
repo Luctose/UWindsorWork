@@ -1,0 +1,11 @@
+.circle {
+    list-style-type: circle;
+}
+
+.alpha {
+    list-style-type: upper-alpha;
+}
+
+.image {
+    list-style-image: url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Forig05.deviantart.net%2Fe6ba%2Ff%2F2014%2F269%2Fc%2F1%2Fminecraft_diamond_icon_by_gifman123-d80lwg6.gif&f=1&nofb=1);
+}

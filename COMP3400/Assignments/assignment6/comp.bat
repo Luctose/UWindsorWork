@@ -1,0 +1,1 @@
+g++ -Wall -Wextra -std=c++2a a6.cpp

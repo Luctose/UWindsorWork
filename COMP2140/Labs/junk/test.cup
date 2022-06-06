@@ -1,0 +1,15 @@
+terminal PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN, JUNK;
+terminal Integer NUMBER;
+non terminal garbage;
+non terminal Integer expr;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIVIDE;
+expr ::= expr:e1 PLUS expr:e2 {: RESULT = e1 + e2; :}
+| expr:e1 MINUS expr:e2 {: RESULT = e1 - e2; :}
+| expr:e1 TIMES expr:e2 {: RESULT = e1 * e2; :}
+| expr:e1 DIVIDE expr:e2 {: RESULT = e1 / e2; :}
+| LPAREN expr:e RPAREN {: RESULT = e; :}
+| NUMBER:e {: RESULT = e; :}
+;
+garbage ::= JUNK {: RESULT = 0; :}
+;

@@ -1,0 +1,17 @@
+Lab 5
+COMP-2540
+By: Lucas Sarweh
+ID: 110042658 
+
+Question 4:
+
+For the insertion sort and n^2 graphs, You can see that they are not exactly lines up. I beleive this is because
+n^2 is insertion sorts worst case. Most of the time insertion sort will be a bit less. It's worst case is when the order
+of the array is greatest to least, and it's best case is when it is already sorted.
+
+For the merge sort and the nlogn graphs, you can see they are overlapping. This is probably because mergesorts
+worst case is its average case.
+
+You can see that merge sort O(nlogn) makes a huge difference over insertion sorts O(n^2) on huge sizes of N.
+(In this case up to 10000). Near the right side of the graph the comparison difference looks to be 100 more
+for insertion sort.

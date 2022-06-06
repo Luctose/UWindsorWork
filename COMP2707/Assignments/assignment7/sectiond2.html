@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form</title>
+    </head>
+    <body>
+        <form method="post" id="myform" style="text-align: left; margin-top: 10%; margin-left: 40%;">
+            <button type="submit" formtarget="_self" formmethod="post" form="myform" formaction="file:///C:/Users/lucas/Desktop/UwindsorWork/COMP2707/Assignments/assignment7/successfully_submitted.html">Submit</button><br>
+            <label for="First Name">First name:</label>
+            <input type="text" id="First Name" required="firstname"><br>
+            <label for="Last Name">Last name:</label>
+            <input type="text" id="Last Name" required="lastname"><br>
+            <label for="Email">Email:</label>
+            <input type="email" id="Email" required="email"><br>
+            <div>
+                <label>ID </label>
+                <input type="radio" id="yes" name="ID" value="yes" onclick="show(this)">
+                <label for="yes">Yes </label>
+                <input type="radio" id="no" name="ID" value="no" onclick="show(this)">
+                <label for="no">No </label>
+            </div>
+        </form>
+        <script>
+            function show(choice){
+                // Turn on the file choice
+                if(choice.value == "yes"){
+                    document.getElementById("myform").innerHTML = 
+                    document.getElementById("myform").innerHTML + '<input type="file" id="myfile">';
+                }else{ // Turn off the file choice
+                    var elem = document.getElementById("myfile");
+                    elem.parentElement.removeChild(elem);
+                }
+            }
+        </script>
+    </body>
+</html>

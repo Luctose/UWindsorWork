@@ -1,0 +1,103 @@
+body {
+    background-color: #2c3131;
+    margin: 0;
+}
+
+#logo {
+    font-family: fantasy;
+    font-size: medium;
+}
+
+#navbar {
+    list-style-type: none;
+    background-color: rgb(34, 122, 122);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration-color: aquamarine;
+    width: 1600;
+    height: 3em;
+    margin: 0;
+    padding: 0;
+    border: 3px solid rgb(18, 88, 88);
+}
+
+
+#navitem {
+    font: 1.5em sans-serif;
+    text-decoration: none;
+    display: list-item;
+    padding: 0.3em;
+    border-left: 6px solid gray;
+    border-top: 3px solid darkgray;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 99.5%;
+  }
+
+.frame {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+#subtit {
+    text-align: center;
+    font-size: large;
+    font-family: sans-serif;
+}
+
+#upin {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    align-content: center;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 3em;
+}
+
+input[type="submit"] {
+    background-color: rgb(34, 122, 122);
+    border: solid rgb(36, 100, 80);
+    border-radius: 20px 20px 20px 20px;
+    padding: 1em;
+    width: 10em;
+    margin-top: 2em;
+}
+
+input[type="text"] {
+    background-color: darkgray;
+    display: block;
+    margin-top: 1em;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    align-content: center;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 3em;
+}
+
+footer {
+    width: 1600;
+    margin: 0 auto;
+    margin-left: 0;
+    padding: 40px 0;
+    margin-top: auto;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    background-color: rgba(169, 169, 169, 0.499);
+    text-align: center;
+}

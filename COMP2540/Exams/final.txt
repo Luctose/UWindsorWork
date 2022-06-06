@@ -1,0 +1,37 @@
+COMP-2540 Final Exam
+Winter 2022
+April 28th 2022
+By: Lucas Sarweh
+ID: 110042658
+
+Question 1:
+
+Vertex 1 --> 2 3 4
+Vertex 2 --> 4 5
+Vertex 3 --> 6
+Vertex 4 --> 3 6 7
+Vertex 5 --> 4 7
+Vertex 6 --> 
+Vertex 7 --> 6
+
+Question 2a:
+
+Order:
+{A, D, F, G, E, B, C, H}
+
+Question B
+
+A -> D -> F -> G -> E
+Then E connects to B, C, and H
+
+                    C
+                    ^
+A -> D -> F -> G -> E > B
+                    v
+                    H
+
+Question C
+
+Weight = 2 + 4 + 1 + 2 + 3 + 2 + 6 = 20
+
+Other questions on scanned file

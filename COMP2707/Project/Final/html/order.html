@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Order</title>
+        <link rel="stylesheet" type="text/css" href="C:\Users\lucas\Desktop\UwindsorWork\COMP2707\Project\Final\css\order.css">
+        <script type="text/javascript" src="..\javascript\calcTotal.js"></script>
+    </head>
+    <body>
+        <div>
+            <br><br><br>
+            <nav>
+                <ul id="navbar" class="sticky">
+                    <li id="logo"><h3>寿司欲しい<br><i>Sushi hoshi</i></h3></li>
+                    <li><a id="navitem" href="home.html">Home</a></li>
+                    <li><a id="navitem" href="order.html">Order</a></li>
+                    <li><a id="navitem" href="reservations.html">Reservations</a></li>
+                    <li><a id="navitem" href="signInUp.html">Sign up/in</a></li>
+                </ul>
+            </nav>
+        </div>
+        <form id="myform">
+            <div style="margin: 5%;">
+                <label id="foodlabel">Sashimi</label>
+                <ul id="category">
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\salmonOrder.jpg" width="50" height="50"></li>
+                            <li><p>Salmon</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="0" onchange="calcTotal()">
+                    </li>
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\whiteTunaOrder.jpeg" width="50" height="50"></li>
+                            <li><p>White Tuna</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="1" onchange="calcTotal()">
+                    </li>
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\redTunaOrder.jpg" width="50" height="50"></li>
+                            <li><p>Red Tuna</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="2" onchange="calcTotal()">
+                    </li>
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\crabOrder.jpg" width="50" height="50"></li>
+                            <li><p>Crab</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="3" onchange="calcTotal()">
+                    </li>
+                </ul>
+            </div>
+
+            <div style="margin: 5%;">
+                <label id="foodlabel">Maki (Rolls)</label>
+                <ul id="category">
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\californiaOrder.jpg" width="50" height="50"></li>
+                            <li><p>California</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="4" onchange="calcTotal()">
+                    </li>
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\spicyCrabOrder.jpg" width="50" height="50"></li>
+                            <li><p>Spicy Crab</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="5" onchange="calcTotal()">
+                    </li>
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\eelOrder.jpg" width="50" height="50"></li>
+                            <li><p>Eel</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="6" onchange="calcTotal()">
+                    </li>
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\shrimpTempuraOrder.jpg" width="50" height="50"></li>
+                            <li><p>Tempura</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="7" onchange="calcTotal()">
+                    </li>
+                </ul>
+            </div>
+
+            <div style="margin: 5%;">
+                <label id="foodlabel">Specials</label>
+                <ul id="category">
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\everythingOrder.jpg" width="50" height="50"></li>
+                            <li><p>Everything</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="8" onchange="calcTotal()">
+                    </li>
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\rollsOrder.jpg" width="50" height="50"></li>
+                            <li><p>All Rolls</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="9" onchange="calcTotal()">
+                    </li>
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\sashimiOrder.jpg" width="50" height="50"></li>
+                            <li><p>All Sashimi</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="10" onchange="calcTotal()">
+                    </li>
+                    <li>
+                        <ul id="fooditem">
+                            <li><img src="..\pictures\platterOrder.jpg" width="50" height="50"></li>
+                            <li><p>Platter</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label for="quantity" style="text-align: center;">Quantity:</label><br>
+                        <input type="number" min="0" value="0" class="quantity" id="11" onchange="calcTotal()">
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="submit" id="submit">Sub-Total $0.00 <input type="submit"></input></div>
+        </form>
+        <footer>
+                <p>
+                    © 2022 - This website is not for an actual restaurant and is a project for the Winter 2022 semester
+                    for the university of Windsor.
+                </p>
+        </footer>
+    </body>
+</html>

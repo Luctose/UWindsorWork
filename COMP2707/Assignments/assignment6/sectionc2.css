@@ -1,0 +1,22 @@
+h1 {
+    margin-left: 20px;
+    margin-right: 20px;
+    border-left: solid black 4px;
+    border-bottom: solid black 4px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+#sidebar {
+    width: 200px;
+    border: solid 1px;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    background-color: #cff;
+}
+p {
+    margin-left: 20px;
+    margin-right: 40px;
+}

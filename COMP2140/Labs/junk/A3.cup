@@ -1,0 +1,79 @@
+import java_cup.runtime.*;
+
+terminal PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN;
+terminal EQUAL, NEQUAL;
+terminal COMMA, SEMICOLON;
+terminal ID, QSTRING;
+terminal BEGIN, END, ASSIGN, RETURN, IF, ELSE, WRITE, READ, INT, STRING, REAL, MAIN, JUNK;
+terminal Integer NUMBER;
+non terminal Integer garb;
+non terminal Integer expr;
+non terminal boolexpr;
+non terminal actualparams;
+non terminal statement;
+non terminal block;
+non terminal localvardecl;
+non terminal assignstatement;
+non terminal returnstatement;
+non terminal ifstatement;
+non terminal writestatement;
+non terminal readstatement;
+non terminal program;
+non terminal type;
+non terminal methoddecl;
+non terminal formalparams;
+non terminal formalparam;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIVIDE;
+precedence left LPAREN, RPAREN;
+precedence left EQUAL, NEQUAL;
+precedence left COMMA, SEMICOLON, ASSIGN;
+precedence left ID, QSTRING;
+precedence left BEGIN, END;
+precedence left RETURN, IF, ELSE, WRITE, READ, MAIN;
+precedence left STRING, INT, REAL;
+expr::= expr:e1 PLUS expr:e2 {: RESULT = new Integer(e1.intValue() + e2.intValue()); :}
+| expr:e1 MINUS expr:e2 {: RESULT = new Integer(e1.intValue() - e2.intValue()); :}
+| expr:e1 TIMES expr:e2 {: RESULT = new Integer(e1.intValue() * e2.intValue()); :}
+| expr:e1 DIVIDE expr:e2 {: RESULT = new Integer(e1.intValue() / e2.intValue()); :}
+| LPAREN expr:e RPAREN {: RESULT = e; :}
+| NUMBER:e {: RESULT = e; :}
+| ID {: :}
+| ID LPAREN actualparams RPAREN {: :};
+boolexpr::= boolexpr EQUAL boolexpr {: :}
+| boolexpr NEQUAL boolexpr {: :};
+actualparams::= actualparams COMMA expr {: :}
+| expr {: :}
+|  {: :};
+block::= BEGIN block END {: :}
+| BEGIN statement END {: :};
+statement::= BEGIN statement END {: :}
+| localvardecl {: :}
+| assignstatement {: :}
+| returnstatement {: :}
+| ifstatement {: :},
+| writestatement {: :}
+| readstatement {: :};
+localvardecl::= type ID SEMICOLON {: :}
+| type assignstatement {: :};
+assignstatement::= ID ASSIGN expr SEMICOLON {: :}
+| ID ASSIGN QSTRING SEMICOLON {: :};
+returnstatement::= RETURN expr SEMICOLON {: :};
+ifstatement::= IF LPAREN boolexpr RPAREN statement {: :}
+| IF LPAREN boolexpr RPAREN statement ELSE statement {: :};
+writestatement::= WRITE LPAREN expr COMMA QSTRING RPAREN SEMICOLON {: :};
+readstatement::= READ LPAREN ID COMMA QSTRING RPAREN SEMICOLON {: :};
+program::= methoddecl {: :}
+| program methoddecl {: :};
+type::= INT {: :}
+| REAL {: :}
+| STRING {: :};
+methoddecl::= type MAIN ID LPAREN formalparams RPAREN block {: :}
+| type ID LPAREN formalparams RPAREN block {: :};
+formalparams::= formalparams COMMA formalparam {: :}
+| formalparam {: :}
+|  {: :};
+formalparam::= type ID {: :}
+;
+garb ::= JUNK {: RESULT = 0 :}
+;
