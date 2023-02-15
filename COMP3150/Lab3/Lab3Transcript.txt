@@ -1,0 +1,224 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20221101215434
+Username: DESKTOP-NIH3VGP\lucas
+RunAs User: DESKTOP-NIH3VGP\lucas
+Configuration Name: 
+Machine: DESKTOP-NIH3VGP (Microsoft Windows NT 10.0.19044.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 18536
+PSVersion: 5.1.19041.1682
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.1682
+BuildVersion: 10.0.19041.1682
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\lucas\Desktop\UwindsorWork\COMP3150\SQLite\Lab3Transcript.txt
+PS C:\Users\lucas\Desktop\UwindsorWork\COMP3150\SQLite> sqlite3 MyKanjis.db
+SQLite version 3.35.3 2021-03-26 12:12:52
+Enter ".help" for usage hints.
+sqlite> CREATE TABLE Kanji (
+   ...> Unicode INTEGER PRIMARY KEY,
+   ...> Type VARCHAR(255) NULL,
+   ...> JlptLevel VARCHAR(255) NULL,
+   ...> Character VARCHAR(255) NOT NULL,
+   ...> );
+Error: near ")": syntax error
+sqlite> CREATE TABLE Kanji (
+   ...> Unicode INTEGER PRIMARY KEY,
+   ...> Type VARCHAR(255) NULL,
+   ...> JlptLevel VARCHAR(255) NULL,
+   ...> Character VARCHAR(255) NOT NULL
+   ...> );
+sqlite> CREATE TABLE AreMadeOfKanji (
+   ...> LargeKanji INTEGER NOT NULL,
+   ...> RadicalKanji INTEGER NOT NULL,
+   ...> PRIMARY KEY (LargeKanji, RadicalKanji),
+   ...> FOREIGN KEY(LargeKanji) REFERENCES Kanji(Unicode),
+   ...> FOREIGN KEY(RadicalKanji) REFERENCES Kanji(Unicode)
+   ...> );
+sqlite> CREATE TABLE Stroke (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> Number INTEGER NOT NULL,
+   ...> Order BLOB NULL
+   ...> );
+Error: near "Order": syntax error
+sqlite> CREATE TABLE Stroke (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> Number INTEGER NOT NULL,
+   ...> Order BLOB
+   ...> );
+Error: near "Order": syntax error
+sqlite> CREAT TABLE Stroke (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> Number INTEGER NOT NULL
+   ...> );
+Error: near "CREAT": syntax error
+sqlite> CREATE TABLE Stroke (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> Number INTEGER NOT NULL
+   ...> 0;
+Error: near "0": syntax error
+sqlite> CREATE TABLE Stroke (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> Number INTEGER NOT NULL
+   ...> );
+sqlite> ALTER TABLE Kanji
+   ...> (
+   ...> ADD Stroke.Id INTEGER NOT NULL
+   ...> );
+Error: near "(": syntax error
+sqlite> ALTER TABLE Kanji
+   ...> ADD Stroke.ID INTEGER NOT NULL
+   ...>
+   ...> ;
+Error: near ".": syntax error
+sqlite> ALTER TABLE Kanji
+   ...> ADD StrokeId INTEGER NOT NULL
+   ...> REFERENCES Stroke(Id);
+sqlite> CREATE TABLE Meaning (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> Means VARCHAR(255) NOT NULL
+   ...> );
+sqlite> CREATE TABLE KanjiMeaning (
+   ...> MeaningId INTEGER NOT NULL
+   ...> ,
+   ...> FOREIGN KEY(MeaningId) REFERNECES Meaning(Id),
+   ...> KanjiId INTEGER NOT NULL,
+   ...> FOREIGN KEY(KanjiId) REFERENCES Kanji(Unicode)
+   ...> );
+Error: near "REFERNECES": syntax error
+sqlite> CREATE TABLE KanjiMeaning (
+   ...> MeaningId INTEGER NOT NULL,
+   ...> KanjiId INTEGER NOT NULL,
+   ...> FOREIGN KEY(MeaningId) REFERENCES Meaning(Id),
+   ...> FOREIGN KEY(KanjiId) REFERENCES Kanji(Unicode),
+   ...> PRIMARY KEY (MeaningId, KanjiId)
+   ...> );
+sqlite> CREATE TABLE IsSimilarToKanji (
+   ...> SourceKanji INTEGER NOT NULL,
+   ...> DestKanji INTEGER NOT NULL,
+   ...> PRIMARY KEY(SourceKanji, DestKanji),
+   ...> FOREIGN KEY (SourceKanji) REFERENCES Kanji(Unicode),
+   ...> FOREIGN KEY (DestKanji) REFERENCES Kanji(Unicode)
+   ...> );
+sqlite> CREATE TABLE Examples (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> Sentence VARCHAR(255) NULL,
+   ...> Meaning VARCHAR(255) NULL
+   ...> );
+sqlite> CREATE TABLE KanjiExamples (
+   ...> KanjiId INTEGER NOT NULL,
+   ...> ExampleId INTEGER NOT NULL,
+   ...> PRIMARY KEY (KanjiId, ExampleId),
+   ...> FOREIGN KEY (KanjiId) REFERENCES Kanji(Unicode),
+   ...> FOREIGN KEY (ExampleId) REFERENCES Examples(Id)
+   ...> );
+sqlite> CREATE TABLE Kunyomi (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> Romaji VARCHAR(255) NULL,
+   ...> Hiragana VARCHAR(255) NULL,
+   ...> Katakana VARCHAR(255) NULL
+   ...> );
+sqlite> CREATE TABLE KanjiKunyomi (
+   ...> KanjiId INTEGER NOT NULL,
+   ...> KunyomiId INTEGER NOT NULL,
+   ...> PRIMARY KEY (KanjiId, KunyomiId),
+   ...> FOREIGN KEY (KanjiId) REFERENCES Kanji(Unicode),
+   ...> FOREIGN KEY (KunyomiId) REFERENCES Kunyomi(Id)
+   ...> );
+sqlite> CREATE TABLE Onyomi (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> Romaji VARCHAR(255) NULL,
+   ...> Hiragana VARCHAR(255) NULL,
+   ...> Katakana VARCHAR(255) NULL
+   ...> );
+sqlite> CREATE TABLE KanjiOnyomi (
+   ...> KanjiId INTEGER NOT NULL,
+   ...> OnyomiId INTEGER NOT NULL,
+   ...> PRIMARY KEY (KanjiId, OnyomiId),
+   ...> FOREIGN KEY (KanjiId) REFERENCES Kanji(Unicode),
+   ...> FOREIGN KEY (OnyomiId) REFERENCES Onyomi(Id)
+   ...> );
+sqlite> CREATE TABLE SingleReading (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> Romaji VARCHAR(255) NOT NULL,
+   ...> Hiragana VARCHAR(255) NOT NULL,
+   ...> Katakana VARCHAR(255) NOT NULL
+   ...> );
+sqlite> CREATE TABLE Compounds (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> KanjiString VARCHAR(255) NOT NULL,
+   ...> CONSTRAINT UK_KanjiString UNIQUE(KanjiString),
+   ...> Meaning VARCHAR(255) NOT NULL
+   ...> );
+Error: near "Meaning": syntax error
+sqlite> CREATE TABLE Compounds (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> KanjiString VARCHAR(255) NOT NULL,
+   ...> CONSTRAINT UK_KanjiString UNIQUE(KanjiString),
+   ...> Means VARCHAR(255) NOT NULL
+   ...> );
+Error: near "Means": syntax error
+sqlite> CREATE TABLE Compounds (
+   ...> Id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...> KanjiString VARCHAR(255) NOT NULL,
+   ...> Means VARCHAR(255) NOT NULL,
+   ...> CONSTRAINT UK_KanjiString UNIQUE(KanjiString)
+   ...> );
+sqlite> ALTER TABLE Compounds
+   ...> ADD SingleReadingId INTEGER NOT NULL REFERENCES SingleReading(Id);
+sqlite> CREATE TABLE KanjiMakeUpCompounds (
+   ...> KanjiId INTEGER NOT NULL,
+   ...> CompoundId INTEGER NOT NULL,
+   ...> CONSTRAINT FK_Compounds_KanjiId_2_Kanji_Unicode FOREIGN KEY (KanjiId) REFERENCES Kanji(Unicode),
+   ...> f,f,);
+Error: near "f": syntax error
+sqlite> CREATE TABLE KanjiMakeUpCompounds (
+   ...> KanjiId INTEGER NOT NULL,
+   ...> CompoundId INTEGER NOT NULL,
+   ...> CONSTRAINT FK_KanjiMakeUpCompounds_KanjiId_2_Kanji_Unicode FOREIGN KEY (KanjiId) REFERENCES Kanji(Unicode),
+   ...> CONSTRAINT FK_KanjiMakeUpCompounds_CompoundId_2_Compounds_Id FOREIGN KEY (CompoundId) REFERENCES Compounds(Id),
+   ...> PRIMARY KEY (KanjiId, CompoundId)
+   ...> );
+sqlite> ALTER TABLE IsSimilarToKanji
+   ...> .
+   ...> ';
+   ...> ;;;
+   ...> add;
+   ...> Kill;
+   ...> ADD ,lll;
+   ...>
+   ...> dasdasd
+   ...> .quit
+   ...> quit);
+   ...> ;
+   ...> ;;;;;;;;;;;;;;;;;;;;
+   ...>  ;
+   ...> ADD CONSTRAINT d;
+   ...> .quit
+   ...>
+Error: unrecognized token: "';
+;;;
+add;
+Kill;
+ADD ,lll;
+
+dasdasd
+.quit
+quit);
+;
+;;;;;;;;;;;;;;;;;;;;
+ ;
+ADD CONSTRAINT d;
+.quit"
+PS C:\Users\lucas\Desktop\UwindsorWork\COMP3150\SQLite> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+PS C:\Users\lucas\Desktop\UwindsorWork\COMP3150\SQLite> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20221102002613
+**********************
