@@ -1,0 +1,17 @@
+WHOSE WOODS THESE ARE I THINK I KNOW
+HIS HOUSE IS IN THE VILLAGE THOUGH
+HE WILL NOT SEE ME STOPPING HERE   
+TO WATCH HIS WOODS FILL UP WITH SNOW
+MY LITTLE HORSE MUST THINK IT QUEER   
+TO STOP WITHOUT A FARMHOUSE NEAR   
+BETWEEN THE WOODS AND FROZEN LAKE   
+THE DARKEST EVENING OF THE YEAR
+HE GIVES HIS HARNESS BELLS A SHAKE   
+TO ASK IF THERE IS SOME MISTAKE
+THE ONLY OTHER SOUND'S THE SWEEP
+OF EASY WIND AND DOWNY FLAKE
+THE WOODS ARE LOVELY, DARK AND DEEP
+BUT I HAVE PROMISES TO KEEP
+AND MILES TO GO BEFORE I SLEEP
+AND MILES TO GO BEFORE I SLEEP
+{'My', 'ask', 'darkest', 'without', 'there', 'Of', 'stopping', 'near', 'evening', 'woods', 'house', 'if', 'watch', 'in', 'will', 'To', 'gives', 'keep', 'fill', 'only', 'me', 'are', 'snow', 'Whose', 'harness', 'flake', 'He', 'The', 'sleep', 'farmhouse', 'Between', 'downy', 'wind', 'go', 'miles', 'I', 'mistake', 'know', 'dark', 'his', 'with', 'and', 'of', 'the', 'His', 'queer', 'is', 'shake', 'some', 'bells', 'to', 'though', 'But', 'must', "sound's", 'see', 'lake', 'before', 'have', 'easy', 'promises', 'stop', 'it', 'little', 'up', 'think', 'other', 'year', 'sweep', 'lovely,', 'these', 'deep', 'here', 'frozen', 'not', 'And', 'a', 'horse', 'village'}

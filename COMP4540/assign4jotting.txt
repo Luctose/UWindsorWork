@@ -1,0 +1,98 @@
+3-SAT:
+input: An expression of m clauses
+
+->
+
+pi
+input: n+1 cards
+a u and -u column on each
+
+Make a hole punched out the u col if
+ith clause of 3-SAT can be true
+and the -u covered.
+Cover the u col hole if the ith clause
+can not be true (and -u punched)
+
+Example:
+
+Literal set: {u1,u2,u3,-u1,-u2,-u3}
+
+(u1 or u2 or -u3) and (-u1 or u2 or u3) and (u1 or u2 or u3)
+
+For each value u, line up each column corresponding to u and -u.
+The amount of u's = the number of cards -1
+So, |U| = n
+
+Example above n = 3
+because there is u1, u2 and u3
+The expression above has 3 clauses
+so, m = 3
+
+Example 1: Yes-instance
+u1 -u1
+o   -
+-   o
+o   -
+
+u2 -u2
+o   -
+o   -
+o   -
+
+u3 -u3
+-   o
+o   -
+o   -
+
+Example 2: No-instance
+u1 -u1
+-   o
+-   o
+o   -
+
+u2 -u2
+-   o
+o   -
+o   -
+
+u3 -u3
+-   o
+o   -
+-   o
+
+(-u1 or -u2 or -u3) and (-u1 or u2 or u3) and (u1 or u2 or -u3)
+
+Say there are 4 literals: u1,u2,u3,u4
+
+n = 4
+there are 4 clauses so
+m = 4
+
+(-u1 or -u3 or u4) and (-u1 or u2 or u4) and (u1 or u2 or -u3) and (-u2 or u3 or -u4)
+
+Example 
+u1 -u1
+-   o
+-   o
+o   -
+-   -
+
+u2 -u2
+-   -
+o   -
+o   -
+-   o
+
+u3 -u3
+-   o
+-   -
+-   o
+o   -
+
+u4 -u4
+o   -
+o   -
+-   -
+-   o
+
+The cards are flippable so if either side is filled it is a yes instance
