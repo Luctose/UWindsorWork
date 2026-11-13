@@ -1,0 +1,4 @@
+    public void addItem(Item item){
+        this.cart.add(item);
+        this.total += item.itemTotal();
+    }

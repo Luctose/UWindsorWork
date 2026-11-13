@@ -1,0 +1,19 @@
+﻿
+    public class QUebecTaxRateAPI
+    {
+        public float GetQUebecTaxRate(ItemID  id)
+        {
+            float taxRate;
+            //pretend to do a lot of work to get tax rate for specific product
+            //....., and finally, find out everything is taxed 14%, regardless of the item ID.
+	    taxRate = 0.14f;
+            //........
+            return taxRate;
+        }
+
+	    //many other APIs not used in this assignment.
+	    //......
+
+    }
+
+

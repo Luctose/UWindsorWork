@@ -1,0 +1,24 @@
+Assignment 1
+By: Lucas Sarweh
+Due: 10/17/23
+
+1.  List 4 different protocols that appear in the protocol column in the
+unfiltered packet-listing window in the step above (figure 3).
+
+TCP, UDP, TLSv1.2, QUIC
+
+4.  What is the broadcast Ethernet address, written in standard form as 
+Wireshark displays it?
+
+ff ff ff ff ff ff
+
+5.  Which bit of the Ethernet address is used to determine whether it is 
+unicast or multicast/broadcast? Also, what values of this bit correspond to unicast or 
+multicast/broadcast?
+
+The first byte of the address' least significant bit determines if it is
+unicast or multicast. You can say it depends on if the first byte is even or
+odd. If the LSB is 0 then it is unicast if it is 1 it is multicast. Usually in hex 
+multicast uses 01 as the first byte and unicast uses 80 or 3c. For broadcast,
+the address is all 1's. So, the address is ff ff ff ff ff ff which also
+satisfies the LSB being 1 to be a multicast.

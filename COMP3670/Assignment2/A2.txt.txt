@@ -1,0 +1,47 @@
+Assignment 2
+COMP 3670
+By: Lucas Sarweh
+ID: 110042658
+Due: Nov 14th, 2023
+
+1. 00 08 74 4f 36 23
+
+2. In Discover - Option: (53) DHCP Message Type (Discover)
+   In Request - Option: (53) DHCP Message Type (Request)
+
+   Discover has Option (116) and Request does not.
+
+3. First Set value: 0x3e5e0ce3
+   Second Set value: 0x257e55a3
+
+4.
+DISCOVER
+Src: 0.0.0.0
+Dest: 255.255.255.255
+
+OFFER
+Src: 192.168.1.1
+Dest: 255.255.255.255
+
+REQUEST
+Src: 0.0.0.0
+Dest: 255.255.255.255
+
+ACK
+Src: 192.168.1.1
+Dest: 255.255.255.255
+
+5. 255.255.255.255
+
+6. Your (client) IP address: 192.168.1.101
+
+7. Yes, the client accepts the IP.
+Clients response: Your (client) IP address: 192.168.1.101
+
+8. The lease time is how long the DHCP server will lend the IP address to the
+client for. On this experiment it says IP Address Lease Time: (86400s) 1 day
+
+9. ARP (A broadcast) packets were sent after DHCP Discover in order to ask
+if anyone has 192.168.1.101. Since no one had it it was offered to the client
+who did DHCP Discover. It was also used to broadcast that the client now is
+leasing 192.168.1.101 after the DHCP ACK.

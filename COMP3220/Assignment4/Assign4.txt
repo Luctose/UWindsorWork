@@ -1,0 +1,43 @@
+Assignment 4
+COMP 3220
+Lucas Sarweh
+Due: Nov 17th 2023
+
+1. I decided to make a Money class that carries an amount and displays only
+2 decimal points for currency. This class would be the least coupled of all
+classes so it requires no information from the other classes and no changes to
+other classes. However, the other classes expect functionality from this class
+and so the following methods need to be implemented.
+public Money minus()
+public void add()
+public Money times()
+public String toString()
+Money is stored in the Payment class and the ProductSpecification class, but is
+created in the ProductCatalogue and Sale classes. To keep cohesion high make
+all changes in money specific to the Money class.
+
+https://uwin365-my.sharepoint.com/:v:/r/personal/sarwehl_uwindsor_ca/Documents/Recording-20231117_211807.webm?csf=1&web=1&e=i1oEd3&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19
+
+2.
+https://uwin365-my.sharepoint.com/:v:/r/personal/sarwehl_uwindsor_ca/Documents/Recording-20231117_212530.webm?csf=1&web=1&e=7eQ1yz&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19
+
+3. Controller pattern explaination and GUI design
+
+The Register class is already a controller, but I made a class ProcessSaleHandler
+which will direct the inputs from a customer. It is a controller that represents
+the overall system.
+https://uwin365-my.sharepoint.com/:v:/r/personal/sarwehl_uwindsor_ca/Documents/Recording-20231117_232444.webm?csf=1&web=1&e=V9GaFW&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19
+
+Start Sale -> Add Items -> Payment -> Complete Sale
+
+4. The pattern that should be used is the indirection pattern. Getting taxes
+should be seperated by the Sale class calling some API to get only that
+information. The main method determines which tax area the program runs.
+
+https://uwin365-my.sharepoint.com/:v:/r/personal/sarwehl_uwindsor_ca/Documents/Recording-20231117_231355.webm?csf=1&web=1&e=OQfE2r&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19
+
+5. The pattern is still indirection.
+https://uwin365-my.sharepoint.com/:v:/r/personal/sarwehl_uwindsor_ca/Documents/Recording-20231117_232006.webm?csf=1&web=1&e=U3Pprk&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19
+
+6. 
+https://uwin365-my.sharepoint.com/:v:/r/personal/sarwehl_uwindsor_ca/Documents/Recording-20231117_233616.webm?csf=1&web=1&e=HXxBgu&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19

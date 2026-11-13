@@ -1,0 +1,37 @@
+% prerequisites
+prerequisite(comp1410, comp1400).
+prerequisite(comp1410, comp1000).
+prerequisite(comp2120, comp1410).
+prerequisite(comp2130, comp1000).
+prerequisite(comp2540, comp1410).
+prerequisite(comp2140, comp2120).
+prerequisite(comp2560, comp1410).
+prerequisite(comp2650, comp1410).
+prerequisite(comp2660, comp2650).
+prerequisite(comp3150, comp2560).
+prerequisite(comp3150, comp2540).
+prerequisite(comp3220, comp2120).
+prerequisite(comp3220, comp2540).
+prerequisite(comp3300, comp2540).
+prerequisite(comp3300, comp2660).
+prerequisite(comp3540, comp2540).
+prerequisite(comp3540, comp2310).
+prerequisite(comp3670, comp2650).
+prerequisite(comp4400, comp2310).
+prerequisite(comp4400, comp2540).
+prerequisite(comp4400, comp2140).
+prerequisite(comp4540, comp3540).
+
+% Remove duplicates
+remove_duplicate([], []).
+
+remove_duplicate([Head|Tail], Listnew) :- member(Head, Tail), remove_duplicate(Tail, Listnew).
+
+remove_duplicate([Head|Tail], [Head|Listnew]) :- \+ member(Head, Tail), remove_duplicate(Tail, Listnew).
+
+% Extract prerequisites
+get_all_prerequisites(Course, Prerequisites) :- findall(One_Answer, prereq(Course, One_Answer), Next), remove_duplicate(Next, Prerequisites).
+
+prereq(Prerequisites, One_Answer) :- prerequisite(Prerequisites, One_Answer).
+
+prereq(Prerequisites, Next) :- prerequisite(Prerequisites, One_Answer), prereq(One_Answer, Next).

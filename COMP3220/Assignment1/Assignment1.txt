@@ -1,0 +1,58 @@
+COMP 3220 Assignment 1
+By: Lucas Sarweh
+Due: 09/30/2023
+
+1. See Java files
+
+2. I think the answer is to choose a: create a seperate use case for each operation.
+In the POS example a use case could be "A customer enters the products they are
+buying" which is retreiving items from the database of store goods. This use case
+is only one of the CRUD operations. Another could be "A manager enters a brand new
+product into the store system" which is only the create part.
+
+3a.
+
+Actors: Primary: Student, Supporting: Apartment owner, Offstage: Service representative
+
+Major Use Cases:
+
+- An apartment owner entering information about their apartment
+- A student searches for an apartment based on their needs
+- A student contacts an apartment owner
+- A service representative deletes an occupied apartment
+
+b. See JPG file
+
+4a.
+
+Actors: Primary: Member, Supporting: Manager, Offstage: System
+
+Use Cases:
+
+- A member registers online
+- A member chooses a membership plan
+- Update membership deals and prices
+- Track members current and previous membership plans
+- The system sends a reminder to members one month before the membership is to be renewed
+- A member can renew their membership
+- A manager can update a members membership plan pricing
+- Maintain service usage records
+	- The system tracks members site visits
+	- The system generates reports for heavy users that the manager reads
+	- The system generates reports for light users that the manager reads
+- A manager can renew members membership early
+
+b.
+
+- Maintain service usage records
+	- The system tracks members site visits
+	- The system generates reports for heavy users that the manager reads
+	- The system generates reports for light users that the manager reads
+
+Extensions:
+
+- If at anytime a user does not agree to disclose their data
+	- The system stops tracking their site visits
+	- The system generates a report to the manager
+
+c. See JPG file
